@@ -1,0 +1,122 @@
+body { font-family: Sans-Serif; }
+.container {
+  display: grid;
+  grid-template-columns: auto minmax(150px, 900px) 100px auto;
+}
+.block-0-header {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding-left: 10px;
+}
+.block-left {
+  grid-column-start: 1;/*2*/
+  grid-column-end: 2;/*3*/
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  /*border:1px dotted lightgray;*/
+}
+.block-2 {
+  grid-column-start: 2;/*2*/
+  grid-column-end: 4;/*3*/
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.block-switcher {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  /*border:1px dotted lightgray;*/
+}
+
+table { width: 100% }
+table tr td:first-child { text-align: center; }
+table tr td:nth-child(2) { text-align: right; }
+table tr td:nth-child(3) { text-align: right; }
+table tr td:nth-child(4) { text-align: right; }
+table tr td:nth-child(5) { text-align: center; }
+table tr td:nth-child(6) { text-align: center; }
+table tr td:nth-child(7) { text-align: right; }
+
+/* RESULT */
+#status, #resultTable {
+  -webkit-transition: background .5s, color .5s ease-in-out;
+  -moz-transition: background .5s, color .5s ease-in-out;
+  -ms-transition: background .5s, color .5s ease-in-out;
+  -o-transition: background .5s, color .5s ease-in-out;
+  transition: background .5s, color .5s ease-in-out;
+  padding: 10px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, .8);
+  -ms-box-shadow: 5px 5px 10px rgba(0, 0, 0, .8);
+  -o-box-shadow: 5px 5px 10px rgba(0, 0, 0, .8);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, .8);
+}
+
+#resultTable {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* CHECKBOX AS SWITCHER */
+.slideThree {
+  width: 80px;
+  height: 26px;
+  background: #333;
+  margin: 20px auto;
+  position: relative;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+.slideThree:after {
+  content: "OFF";
+  color: #D1B37D;
+  position: absolute;
+  right: 10px;
+  z-index: 0;
+  font: 12px/26px Arial, sans-serif;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+}
+.slideThree:before {
+  content: "ON";
+  color: #69ADA4;
+  position: absolute;
+  left: 10px;
+  z-index: 0;
+  font: 12px/26px Arial, sans-serif;
+  font-weight: bold;
+}
+.slideThree label {
+  display: block;
+  width: 34px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 1;
+  background: #fcfff4;
+  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 50px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.slideThree input[type="checkbox"] {
+  visibility: hidden;
+}
+.slideThree input[type="checkbox"]:checked + label {
+  left: 43px;
+}
+
+@media screen and (max-width: 800px) {
+  /*.sm-hidden { display: none; }*/
+}

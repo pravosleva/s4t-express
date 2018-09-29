@@ -1,0 +1,173 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('s4t-express:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+let port = normalizePort(process.env.PORT || '80');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * SocketIO usage special for the the-fool-game
+ */
+
+var io = require('socket.io')(server);
+//console.log(io);
+// var fgLogic = require('../the-fool-game-logic-socket.io');
+// fgLogic(io);
+
+const cpuMonitor = require('../cpuMonitor');
+cpuMonitor(io);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port, 'selection4test.ru');//selection4test.ru
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Send mail when server restarting.
+ */
+
+const nodemailer = require('nodemailer');
+let emailSimpleTest = function(res){
+	/*
+		Полное доменное имя службы SMTP
+
+			smtp-relay.gmail.com
+				Требования к конфигурации
+					Порт 25, 465 или 587.
+					Протокол SSL или TLS.
+					Требуется один или несколько статических IP-адресов.
+				Требования к аутентификации
+					IP address provides authentication.
+
+			smtp.gmail.com
+				Требования к конфигурации
+					Порт 465 (требуется SSL)
+					Порт 587 (требуется TLS).
+					Разрешены динамические IP-адреса.
+				Требования к аутентификации
+					Для аутентификации требуется полный адрес электронной почты Gmail или G Suite.
+
+			aspmx.l.google.com
+				Требования к конфигурации
+					Порт 25.
+					TLS не требуется.
+					Разрешены динамические IP-адреса.
+					Сообщения можно отправлять только пользователям Gmail и G Suite.
+				Требования к аутентификации
+					Отсутствуют.
+	*/
+
+	// create reusable transporter object using the default SMTP transport
+	let transporter = nodemailer.createTransport({
+			host: 'smtp.gmail.com',
+			port: 465,
+			secure: true, // secure:true for port 465, secure:false for port 587
+			auth: {
+				user: 'specialpostbox1@gmail.com',
+				pass: 'gfhjkmytjlyjpyfxysq'
+			}
+	});
+
+  // setup email data with unicode symbols
+	let mailOptions = {
+		from: '"Den Pol" <pravosleva5212@gmail.com>', // sender address
+		to: 'selection4test@gmail.com', // list of receivers
+		subject: 's4t restarted', // Subject line
+		text: 'Simple test.', // plain text body
+		html: "<h2>Whats'up!</h2><p>This msg was generated when server was restarted...</p>" // html body
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error) {
+			//console.log(`ERROR: ${error.response}`);
+			serverSettings.sendResp(res, `ERROR: ${JSON.stringify(error)}`);
+		} else {
+			//console.log('Message %s sent: %s', info.messageId, info.response);
+			serverSettings.sendResp(res, `OK: ${info.response}`);
+		}
+	});
+};
+try{
+	emailSimpleTest();
+}catch(err){}
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

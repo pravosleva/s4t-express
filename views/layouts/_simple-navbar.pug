@@ -1,0 +1,55 @@
+append head
+  style.
+    .sidenav {
+      z-index: 100 !important;
+      opacity: 1.0;
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #374c6b;
+      overflow-x: hidden;
+      transition: 0.25s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 4px 8px 4px 32px;
+      text-decoration: none;
+      font-size: 20px;
+      /*color: #818181;*/
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a[name='menu-item']:hover {
+      /*color: yellow;*/
+      background-color: #738EB5;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav { padding-top: 15px; }
+      .sidenav a { font-size: 18px; }
+    }
+div(id='mySidenav' class='sidenav')
+  a(href='javascript:void(0)' class='closebtn' onclick='closeNav()' style='position:absolute;') &times;
+  a(href='http://selection4test.ru/projects/auxiliary-calc' name='menu-item') Liquid
+  a(href='http://selection4test.ru/projects/thermocold-heva-fc-test' name='menu-item') HEVA FC
+  hr
+  a(href='http://selection4test.ru/' name='menu-item') Back to Home
+  //-a(href='http://selection4test.ru:3000' name='menu-item') Open chat on :3000
+span(style='font-size:30px;cursor:pointer;position:fixed;top:15px;right:25px;z-index:3;color:#374c6b;' onclick='openNav()') &#9776;
+script.
+  function openNav() { document.getElementById("mySidenav").style.width = "100%"; }
+  function closeNav() { document.getElementById("mySidenav").style.width = "0%"; }

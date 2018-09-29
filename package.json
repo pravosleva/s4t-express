@@ -1,0 +1,27 @@
+{
+  "name": "s4t-express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cards": "^0.1.1",
+    "child_process": "^1.0.2",
+    "coffee-script": "^1.12.7",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "express-photo-gallery": "^1.0.9",
+    "express-socket.io": "^1.0.3",
+    "express.io": "^1.1.13",
+    "morgan": "~1.8.1",
+    "os": "^0.1.1",
+    "pug": "~2.0.0-beta11",
+    "serve-favicon": "~2.4.2",
+    "socket.io": "^2.0.3",
+    "socket.io-router": "^0.3.0",
+    "url": "^0.11.0"
+  }
+}

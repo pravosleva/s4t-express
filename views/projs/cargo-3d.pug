@@ -1,0 +1,389 @@
+doctype html
+html
+  head
+    meta(name='theme-color' content='#374c6b')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(charset='UTF-8')
+    title= title
+    //--link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous')
+    script(type='text/javascript' src='../javascripts/snackbarjs/snackbar.min.js')
+    link(rel='stylesheet' href='../javascripts/snackbarjs/snackbar.min.css')
+    link(rel='stylesheet' href='../javascripts/snackbarjs/themes-css/material-custom.css')
+    style.
+      textarea{min-height: 50px; max-height: 100px}
+      .noresize {resize: none}
+      .vresize {resize: vertical}
+      .hresize {resize: horizontal}
+
+      table {font-size: 12px}
+      ul.nav-tabs > li {cursor: pointer}
+      a {outline:none !important;}
+
+      table input {margin-bottom: 5px;}
+      /*
+      body{
+        margin: 0;
+        overflow: hidden;
+      }
+      */
+      /*
+      body{background-color: #84B4DB; color: white;}
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {color: white;}
+      */
+      canvas {border-radius: 4px; position: relative;}
+
+      /*.snackbar.snackbar-opened {box-shadow: 2px 2px 10px rgb(0, 0, 0);}*/
+      .snackbar{font-family:Montserrat, Tahoma;}
+    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/WebGL_Three.js/libs/three.js')
+    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/retail.js')
+
+    //- PRELOADER v1
+    //-link(rel='stylesheet' href='../javascripts/preloader/v1/preloader.css')
+    //-script(type='text/javascript' language='JavaScript1.5' src='../javascripts/preloader/v1/preloader.js')
+    //-script.
+      function showPage() {
+        $('.loader').css({ 'display': 'none' });
+        $('.container-fluid').css({ 'display': 'block' });
+      }
+      hideLoader(showPage, 800);
+      // div(class="loader") should be in body!
+      // body should have style='display:none;'
+
+    //- PRELOADER v2
+    link(rel="stylesheet" type="text/css" href="../javascripts/preloader/v2/css-preloader-animations.css")
+    link(rel="stylesheet" type="text/css" href="../javascripts/preloader/v2/before-load.css")
+    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/preloader/v2/load.js')
+    style.
+      .brand { position: absolute; top: 20px; right: 20px; }
+      @media screen and (min-width: 480px) {
+        .brand {
+          width: 155px; height:35px; /* original: 311 x 70 */
+        }
+      }
+      @media (max-width: 479px) {
+        .brand { width: 104px; height:23px; }
+      }
+  body
+    div(id="before-load")
+      div(class="multi")
+        div
+
+    div(class='container-fluid')
+      a(href='https://www.scandiccontainer.fi/en/containers/category/new-containers/' target='_blank')
+        img(src='./imgs/logo-negative-en-cfa9b28415.png' class='brand')
+
+      h3(class='text-shadow') Three.js test
+      p
+        span Container type&nbsp;
+        span(class='containerType badge') #{containerType}
+        span(style='display:none;') &nbsp;Cargo type&nbsp;
+        span(class='cargoType badge' style='display:none;') #{cargoType}
+        span &nbsp;Model [&nbsp;
+        code(class='modelName') #{modelName}
+        span &nbsp;] Limit units number for this Container&nbsp;
+        //-- REMEMBER! Container === Wagon (in main context)
+        span(class='factInWagon badge')
+        span &nbsp;
+          i pcs
+      div(class='text-center')
+        div(id='WebGL-output')
+        p Dims of 1 unit&nbsp;
+          span(class='badge')
+            span(class='cargoLength')
+            span &nbsp;x&nbsp;
+            span(class='cargoWidth')
+            span &nbsp;x&nbsp;
+            span(class='cargoHeight')
+          span &nbsp;
+            i mm
+          span &nbsp;Horizontal Orientation in Container&nbsp;
+          span(class='badge horizontalOrientation')
+          span &nbsp;Add size&nbsp;
+          span(class='badge addSize')
+          span &nbsp;
+            i mm&nbsp;
+    script.
+      $(function(){
+        //console.log(THREE);
+        try{
+          // Convert to meters
+          var wagonLength = #{wagonLength},
+              wagonWidth = #{wagonWidth},
+              wagonHeight = #{wagonHeight},
+              cargoLength = #{cargoLength},
+              cargoWidth = #{cargoWidth},
+              cargoHeight = #{cargoHeight},
+              cargoWeight = #{cargoWeight},
+              addSize = #{addSize};
+              maxInWagon = #{maxInWagon},
+              maxRowsInWagon_byWagonWidth = #{maxRowsInWagon_byWagonWidth},
+              maxRowsInWagon_byWagonLength = #{maxRowsInWagon_byWagonLength},
+              maxFloorsInWagon = #{maxFloorsInWagon},
+              wagonCarryingCapacity = #{wagonCarryingCapacity}
+              cargoConfig = retail.inWagon({
+                length: #{cargoLength},
+                width: #{cargoWidth},
+                height: #{cargoHeight},
+                weight: #{cargoWeight},
+                maxInWagon: #{maxInWagon},
+                addSize: #{addSize},
+                maxRowsInWagon_byWagonWidth,
+                maxRowsInWagon_byWagonLength,
+                maxFloorsInWagon,
+                wagon: {
+                  maxLength: #{wagonLength},
+                  maxWidth: #{wagonWidth},
+                  maxHeight: #{wagonHeight},
+                  maxWeight: wagonCarryingCapacity
+                }
+              }),
+              horizontalOrientation = cargoConfig.horizontalOrientation;
+          console.clear();
+          console.group('CARGO CONFIG');
+          console.log(cargoConfig);
+          console.groupEnd('CARGO CONFIG');
+          let cargoType = $('.cargoType').val(),
+            modelName = $('.modelName').val(),
+            config = cargoConfig.config;
+          let _l_tpm = cargoLength;
+          switch(horizontalOrientation){
+            case "byLength":
+              cargoLength = _l_tpm;
+              cargoWidth = cargoWidth;
+              //console.log(cargoLength, cargoWidth);
+              break;
+            case "byWidth":
+              cargoLength = cargoWidth;
+              cargoWidth = _l_tpm;
+              break;
+            default:;
+          }
+          //console.log(cargoLength);
+          //var mn;modelName !== "" ? mn = " " + modelName : mn = "";
+          //$(".cargoType").html(cargoType);
+          //$(".modelName").html(modelName);
+          $(".cargoLength").html(cargoLength);
+          $(".cargoWidth").html(cargoWidth);
+          $(".cargoHeight").html(cargoHeight);
+          $(".horizontalOrientation").html(horizontalOrientation);
+          $(".addSize").html(addSize);
+
+          var sizeW, sizeH;
+          //console.log(window.innerWidth);
+          sizeW = window.innerWidth - 15*4;
+          sizeH = window.innerHeight - 200;
+
+          var offsetX = wagonLength*0.001/2.1;
+          var offsetY = wagonWidth*0.001/4;
+          var offsetZ_cargoOnly = 0.005; // m
+          if(sizeW < 992){offsetX=0; offsetY=0} // should be refactored
+
+          let degToRad = (deg) => deg * Math.PI / 180;
+
+          let scene = new THREE.Scene(),
+            camera = new THREE.PerspectiveCamera(3.5, sizeW/sizeH, 0.1, 2000),
+            renderer = new THREE.WebGLRenderer({antialias: false});
+          //renderer.setClearColorHex(0xEEEEEE);
+          renderer.setClearColor(0xEEEEEE);
+          renderer.setSize(sizeW, sizeH);
+
+          //let axes = new THREE.AxisHelper(10);
+          //scene.add(axes);
+          var planeGeometry = new THREE.PlaneGeometry(wagonLength*0.001, wagonWidth*0.001);
+          var planeMaterial = new THREE.MeshBasicMaterial({color: 0xd0d0d0}); // материал для рисования (плоским или каркасным способом), по умолчанию плоский, wireframe:true - каркасный
+          var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+          plane.rotation.x = 0;
+          plane.rotation.y = 0;
+          plane.rotation.z = 0;
+          plane.position.x = wagonLength*0.001/2 - offsetX;
+          plane.position.y = wagonWidth*0.001/2 + offsetY;
+          plane.position.z = 0;
+          scene.add(plane);
+          var planeGeometry2 = new THREE.PlaneGeometry(wagonHeight*0.001, wagonWidth*0.001);
+          var planeMaterial2 = new THREE.MeshBasicMaterial({color: 0xdddddd});
+          var plane2 = new THREE.Mesh(planeGeometry2, planeMaterial2);
+          plane2.rotation.x = 0;
+          plane2.rotation.y = degToRad(90);
+          plane2.rotation.z = 0;
+          plane2.position.x = 0 - offsetX;
+          plane2.position.y = wagonWidth*0.001/2 + offsetY;
+          plane2.position.z = wagonHeight*0.001/2;
+          scene.add(plane2);
+          var planeGeometry3 = new THREE.PlaneGeometry(wagonLength*0.001, wagonHeight*0.001);
+          var planeMaterial3 = new THREE.MeshBasicMaterial({color: 0xdddddd});
+          var plane3 = new THREE.Mesh(planeGeometry3, planeMaterial3);
+          plane3.rotation.x = degToRad(-90);
+          plane3.rotation.y = 0;
+          plane3.rotation.z = 0;
+          plane3.position.x = wagonLength*0.001/2 - offsetX;
+          plane3.position.y = 0 + offsetY;
+          plane3.position.z = wagonHeight*0.001/2;
+          scene.add(plane3);
+
+          var cubeGeometry = new THREE.CubeGeometry(cargoLength*0.001, cargoWidth*0.001, cargoHeight*0.001);
+          //console.log(cargoLength*0.001, cargoWidth*0.001, cargoHeight*0.001);
+          //var cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});//337ab7
+
+          // v1
+          /*
+          var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+          cube.position.x = cargoLength*0.001/2 + addSize*0.001;
+          cube.position.y = cargoWidth*0.001/2 + addSize*0.001;
+          cube.position.z = cargoHeight*0.001/2;
+          scene.add(cube);
+          */
+
+          // v2
+          var _pcs = 0;// количество отображаемых кубиков
+          //console.log(cargoLength, cargoWidth);
+          let _fact_inWagon = retail.inWagon({
+            length: cargoLength,
+            width: cargoWidth,
+            height: cargoHeight,
+            weight: cargoWeight,
+            maxInWagon: maxInWagon,
+            addSize: addSize,
+            maxRowsInWagon_byWagonWidth: maxRowsInWagon_byWagonWidth,
+            maxRowsInWagon_byWagonLength: maxRowsInWagon_byWagonLength,
+            maxFloorsInWagon: maxFloorsInWagon,
+            wagon: {
+              maxLength: wagonLength,
+              maxWidth: wagonWidth,
+              maxHeight: wagonHeight,
+              maxWeight: wagonCarryingCapacity
+            }
+          });
+          if(_fact_inWagon.result===0 || _fact_inWagon.result===undefined){
+            //throw new Error(_fact_inWagon.comment);
+            $.snackbar({content: `ATTANTION! ${_fact_inWagon.comment}`, style: "danger-slate", timeout: 60000});
+          }
+          //console.log(_fact_inWagon);
+          console.log(_fact_inWagon.comment);
+          console.log(_fact_inWagon.sizes.comment);
+          $(".factInWagon").html(_fact_inWagon.result);
+          //console.log(_fact_inWagon.result);
+          // v1) Height is not firstly
+          /*
+          for (var k = 0; k < config.pcsZ; k++){ // for each by Z
+            var z = k * cargoHeight*0.001 + cargoHeight*0.001/2;
+            for (var j = 0; j < config.pcsX; j++){
+              var x = j * cargoLength*0.001 + cargoLength*0.001/2 + (j+1)*addSize*0.001;
+              for (var i = 0; i < config.pcsY; i++) {
+                var y = i*cargoWidth*0.001 + cargoWidth*0.001/2 + (i+1)*addSize*0.001;
+
+                var cubeMaterial;
+                if ( _pcs >= _fact_inWagon.result ) {// т.к. _pcs увеличится в конце
+                  cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff7373, wireframe: true});
+                  //cubeMaterial.color = {r:1 , g:0, b:0}
+                } else {
+                  cubeMaterial = new THREE.MeshBasicMaterial({color: 0x007bff, wireframe: true});
+                  //cubeMaterial.color = {r:0 , g:0, b:1} //0x0000ff
+                }
+
+                var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                cube.position.x = x - offsetX;
+                cube.position.y = y + offsetY;
+                cube.position.z = z + offsetZ_cargoOnly;
+                scene.add(cube);
+
+                _pcs += 1;
+              }
+            }
+          }*/
+          // v2) Height is firstly
+          for (var j = 0; j < config.pcsX; j++){ // For each by X
+            let x = j * cargoLength*0.001 + cargoLength*0.001/2 + (j+1)*addSize*0.001;
+            for (var k = 0; k < config.pcsZ; k++){ // For each by Z
+              let z = k * cargoHeight*0.001 + cargoHeight*0.001/2;
+              for (var i = 0; i < config.pcsY; i++) { // For each by YS
+
+                let y = i*cargoWidth*0.001 + cargoWidth*0.001/2 + (i+1)*addSize*0.001,
+                  cubeMaterial;
+                ( _pcs >= _fact_inWagon.result ) ?
+                  cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff7373, wireframe: true})
+                :
+                  cubeMaterial = new THREE.MeshBasicMaterial({color: 0x007bff, wireframe: true});
+                var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                cube.position.x = x - offsetX;
+                cube.position.y = y + offsetY;
+                cube.position.z = z + offsetZ_cargoOnly;
+                scene.add(cube);
+
+                _pcs += 1;
+              }
+            }
+          }
+
+          // v3
+          /*
+          for (var i = 0; i < maxRowsInWagon_byWagonWidth; i++) {
+            var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            cube.position.x = cargoLength/2 + addSize;
+            cube.position.y = i*cargoWidth + cargoWidth/2 + (i+1)*addSize; //cargoWidth/2 + addSize;
+            cube.position.z = cargoHeight/2;// + z;
+            scene.add(cube);
+          }
+          */
+
+          if(sizeW > 992){// 30 90 80 // 20 100 60
+            camera.position.x = 30;
+            camera.position.y = 90;
+            camera.position.z = 80;
+          }else{
+            // 45 70 50 - подойдет когда центр координат совмещен с центром дисплея
+            camera.position.x = 45;
+            camera.position.y = 70;
+            camera.position.z = 50;
+          }
+
+          camera.rotateOnAxis(new THREE.Vector3(1, 0, 0), degToRad(90));
+          camera.up = new THREE.Vector3(0, 0, 1);
+          camera.lookAt(scene.position);
+
+          $("#WebGL-output").append(renderer.domElement);
+          renderer.render(scene, camera);
+
+          // test
+          //...
+
+          // Reconstruct by resizing
+          function onWindowResize(){
+            var sizeW, sizeH;
+            sizeW = window.innerWidth - 15*4;
+            sizeH = window.innerHeight - 160;
+            camera.aspect = sizeW / sizeH;
+            camera.updateProjectionMatrix();
+            renderer.setSize(sizeW, sizeH);
+            render();
+          };
+
+          function render(){
+            renderer.render(scene, camera);
+          }
+          window.addEventListener('resize', onWindowResize, false);
+
+          let delay = (ms=100) => {
+            return new Promise((res, rej)=>{
+            setTimeout(()=>res(), ms);
+            });
+          };
+          delay()
+          .then(()=>{
+            $.snackbar({content: `ATTANTION! Total weight wasn't checked!`, style: `primary`, timeout: 5000});
+          });
+          delay(2000)
+          .then(()=>{
+            $.snackbar({content: `Total Dims for all units [ in Blue only ] is ${_fact_inWagon.sizes.fullX} x ${_fact_inWagon.sizes.fullY} x ${_fact_inWagon.sizes.fullZ} mm`, style: `primary`, timeout: 73000});
+          });
+          delay(15000)
+          .then(()=>{
+            $.snackbar({content: `Container sizes is ${wagonLength} x ${wagonWidth} x ${wagonHeight} mm. More in console`, style: `primary`, timeout: 55000});
+          });
+        }catch(er){
+          $.snackbar({content: `Sorry, ${er.message}`, style: `danger-slate`, timeout: 60000});
+        }
+      });

@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    meta(name='theme-color' content='#4557bb')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0')
+    //-
+    meta(charset='UTF-8')
+    title= title
+    //-script(src='/vendors/jquery.js')
+    //-script(src='/vendors/jquery.flot.js')
+    link(href='https://fonts.googleapis.com/css?family=Permanent+Marker|Kalam|Rationale|Libre+Barcode+39+Text' rel='stylesheet')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    //-style.
+    
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    //- PRELOADER v2
+    link(rel="stylesheet" type="text/css" href="../javascripts/preloader/v2/css-preloader-animations.css")
+    link(rel="stylesheet" type="text/css" href="../javascripts/preloader/v2/before-load.css")
+    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/preloader/v2/load.js')
+    
+  body
+    div(id="before-load")
+      div(class="multi")
+        div
+    include ../layouts/simple-link-back
+    #root
+    //-div(style='display:none')#fanData.right-diagram
+    script(src='/javascripts/midea-modular/bundle.js')
+    //-script.

@@ -1,0 +1,376 @@
+extends ./layouts/jqm-layout
+
+block content
+  //-- MAIN page content
+  div(data-role='page' class='jqm-demos' id='home' data-title='Home')
+    //- ui-responsive-panel
+    div(data-role='header' data-position='fixed')
+      //-- data-fullscreen='true'
+      h1= title
+      a(href='#loginForm' data-icon='lock' data-iconpos='notext') Login
+      a(href='#navPanel' data-icon='bars' data-iconpos='notext') Menu
+      
+    div(role='main' class='ui-content jqm-content jqm-fullwidth')
+      //- h1 Whats'up!
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+          a(href='#about' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-info ui-btn-icon-left') About this Full Stack
+          //- ui-btn-inline
+        div(class='ui-block-b ui-responsive')
+          a(href='#cargoInputParameters' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-left') Cargo settings
+        div(class='ui-block-c')
+          a(id='linkForCargoTest' target='cargoTestPlace' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-left' href='http://selection4test.ru/projects/cargo-3d?wagonLength=13600&wagonWidth=2400&wagonHeight=3000&wagonCarryingCapacity=20000&cargoLength=1000&cargoWidth=1000&cargoHeight=1000&cargoWeight=1800&addSize=50&maxInWagon=13&maxRowsInWagon_byWagonWidth=1&maxRowsInWagon_byWagonLength=50&maxFloorsInWagon=1&cargoType=thermocold_chillers&modelName=test&containerType=truck_v1') Test
+          //- ui-state-disabled
+      div(class='ui-grid-solo ui-responsive')
+        div(class='ui-block-a' style='padding: .3125em;')
+          div(style='border-radius:5px; padding:0px; box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.25);')
+            div(style='border-radius:5px; width: 100%; height: 450px; min-height: 450px; resize: vertical !important; overflow: auto;')
+              iframe(src='http://selection4test.ru/projects/_preview-1-hello-world' style='width:100%; height:98%; border:none;' name='cargoTestPlace' id='cargoTestPlace')
+            
+      p
+        strong.
+          jQuery Mobile&nbsp;
+        span is used in this Front-end.
+        br
+        span The internal page could be got by link to&nbsp;
+          a(href='#examples') examples
+          span .
+          //-data-transition='turn'
+          
+    //-
+      p
+        a(href='#aboutLatestProjects' role='button' class='ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-star ui-btn-icon-left' data-transition='turn') See also About Latest Projects
+      p
+        a(href='http://selection4test.ru/oldSite/index.html') Old version of this site
+      
+    div(data-role='footer' data-position='fixed')
+      div(class='ui-grid-b ui-responsive' style='text-align:center;')
+        div(class='ui-block-a')
+          a(href='https://facebook.com/pravosleva/' target='_self' class='ui-state-disabled ui-shadow ui-btn ui-corner-all ui-icon-facebook ui-btn-icon-notext ui-btn-inline')
+        div(class='ui-block-b')
+          a(href='https://github.com/pravosleva/' target='_self' class='ui-shadow ui-btn ui-corner-all ui-icon-github-alt ui-btn-icon-notext ui-btn-inline')
+        div(class='ui-block-c')
+          a(href='skype:pravosleva?chat' class='ui-shadow ui-btn ui-corner-all ui-icon-skype ui-btn-icon-notext ui-btn-inline')
+
+    //-- PANEL 1: Right side
+    div(data-role='panel' data-position='right' data-display='overlay' data-theme='a' id='navPanel')
+      ul(data-role='listview')
+        li(data-icon='delete')
+          a(href='#' data-rel='close') Close
+        li
+          a(href='#examples') Examples
+        li
+          a(href='#aboutLatestProjects') About Latest Projects
+        li
+          a(href='https://www.scandiccontainer.fi/en/containers/category/new-containers/' target='_blank') About Container Types
+    
+    //-- PANEL 2: Left side
+    div(data-role='panel' data-position='left' data-display='overlay' data-theme='a' id='loginForm')
+      form(class='userform' action='/test' method='post' data-theme='b' data-msgtext='Please, wait...' data-textonly='true' data-textvisible='true' data-inline='true')
+        h2 Login
+        label(for='name') Username:
+        input(type='text' name='userName' id='userName' value='' data-clear-btn='true' data-mini='true')
+        label(for='password') Password:
+        input(type='password' name='password' id='password' value='' data-clear-btn='true' autocomplete='off' data-mini='true')
+        div(class='ui-grid-a')
+          div(class='ui-block-a')
+            a(href='#' data-rel='close' class='ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini') Cancel
+          div(class='ui-block-b')
+            button(class='ui-btn ui-shadow ui-corner-all ui-btn-a ui-mini' type='submit') Submit
+      p
+        i.
+          It's for my tests only.
+        br
+        i.
+          Not for usage yet...
+          
+  //-- DIALOG 1: Examples
+  div(data-role='dialog' data-theme='a' id='examples' data-close-btn='right')
+    div(data-role='header' data-theme='a')
+      h1 Examples
+    div(role='main' class='ui-content')
+      //-p
+        a(href='#home' data-rel='back' class='ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left') Back to Home
+      ul(data-role='listview')
+        li
+          a(href='http://selection4test.ru:3000' target='_self') Socket.IO example as open chat test
+        //-li
+          a(href='http://selection4test.ru:3001' target='_self') Socket.IO example as private chat test
+        li
+          a(href='http://selection4test.ru/projects/auxiliary-calc' target='_self') Auxiliary Calc
+        li
+          a(href='http://selection4test.ru/projects/cargo-react' target='_self') Cargo as React example
+        li
+          a(href='http://selection4test.ru/projects/thermocold-heva-fc-test' target='_self') Chillers Calc Test
+        //-
+          li
+            a(href='http://selection4test.ru/projects/cargo-react/index.html') React example
+          li
+            a(href='http://selection4test.ru/projects/gpo/build/index.html') Redux example 1
+          li
+            a(href='http://selection4test.ru/projects/total-work/index.html') Redux example 2
+    div(data-role='footer')
+      h4 We have done some examples.
+  
+  //-- DIALOG 2: About Latest Projects
+  div(data-role='dialog' data-theme='a' id='aboutLatestProjects' data-close-btn='right')
+    div(data-role='header' data-theme='a')
+      h1 About Latest Projects
+    div(role='main' class='ui-content')
+      //-p
+        a(href='#home' data-rel='back' class='ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left') Back to Home
+      ul(data-role='listview')
+        li
+          a(href='http://selection4test.ru/projects/get-offer-react-gallery/' target='_self') Get Offer (Under construction)
+        //-
+          li
+            a(href='http://selection4test.ru/projects/thermocold/_test.html') Chillers Calc Demo
+    div(data-role='footer')
+      h4.
+        & something else is in process...
+        
+  //-- DIALOG 3: About this Full Stack
+  div(data-role='dialog' data-theme='a' id='about' data-close-btn='right')
+    div(data-role='header' data-theme='a')
+      h1 About this Full Stack
+    div(role='main' class='ui-content')
+      p Сочетание JS+Node+Express - идеальный выбор для команд веб-разработчиков, которым нужен мощный, быстроразвертываемый стек.
+      p Единственная проблема JS - это чувствительность к неуклюжему программированию. Экосистема Node меняет это, предоставляя библиотеки, фреймворки и утилиты, ускоряющие разработку и поощряющие написание хорошего кода.
+      p
+        b Jade was renamed to Pug.&nbsp;
+        span Pug отлично интегрируется с Express. Использование шаблонизаторов необходимо для случаев обилия шаблонного кода, т.к. сам HTML слишком перегружен деталями и трудоемкий для написания вручную.
+    div(data-role='footer')
+      h4.
+        &copy; Ethan Brown
+  
+  //-- DIALOG 4: Cargo - input params
+  div(data-role='dialog' data-theme='a' id='cargoInputParameters' data-close-btn='right')
+    div(data-role='header' data-theme='a')
+      h1 Parameters
+    div(role='main' class='ui-content')
+      p
+        strong(title='Standart Container Type could be selected (Wagon === Container in main context)') Main
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+          label(for='cargoType') Cargo Type
+          select(name='cargoType' id='cargoType' data-mini='true')
+            option(value='thermocold_chillers' selected) Thermocold Chillers
+            option(value='thermokey_drycoolers') Thermokey DryCoolers
+            option(value='luvata_evaporators') Luvata Evaporators
+            option(value='wxr_coolingTowers') W.X.R Cooling Towers
+        div(class='ui-block-b')
+          label(for='containerType' title='Container Type') Container Type
+          select(name='containerType' id='containerType' data-mini='true')
+            option(value='truck_v1' selected) Truck 13.6 m
+            option(value='truck_v2') Truck 7.5 m
+            option(value='custom') Custom
+            option(value='container_20DC') 20' DC
+            option(value='container_20HC') 20' HC
+            option(value='container_20SD') 20' SD
+            option(value='container_40DC') 40' DC
+            option(value='container_40HC') 40' HC
+            option(value='container_40SD') 40' SD
+        div(class='ui-block-c')
+          label(for='modelName') Model Name
+          input(name='modelName' id='modelName' placeholder='Model Name...' value='test' type='text' data-mini='true')
+            
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a' title='Lendth of the Container')
+          label(for='wagonLength') Container L, mm
+          input(name='wagonLength' id='wagonLength' placeholder='Wagon Length...' value='13600' type='text' data-mini='true')
+        div(class='ui-block-b')
+          label(for='wagonWidth' title='Width of the Container') Container W, mm
+          input(name='wagonWidth' id='wagonWidth' placeholder='Wagon Width...' value='2450' type='text' data-mini='true')
+        div(class='ui-block-c')
+          label(for='wagonHeight' title='Height of the Container') Container H, mm
+          input(name='wagonHeight' id='wagonHeight' placeholder='Wagon Height...' value='3000' type='text' data-mini='true')
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+        div(class='ui-block-b')
+          label(style='float:right; padding-top:10px;' title='Carrying Capacity of this Transport Container') Max weight, kg
+        div(class='ui-block-c')
+          input(name='wagonCarryingCapacity' id='wagonCarryingCapacity' placeholder='Carrying Capacity...' value='20000' type='text' data-mini='true')
+    
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+          label(for='cargoLength' title='Lendth of the Cargo') Cargo L, mm
+          input(name='cargoLength' id='cargoLength' placeholder='Cargo Length...' value='1000' type='text' data-mini='true')
+        div(class='ui-block-b' title='Width of the Cargo')
+          label(for='cargoWidth') Cargo W, mm
+          input(name='cargoWidth' id='cargoWidth' placeholder='Cargo Width...' value='1000' type='text' data-mini='true')
+        div(class='ui-block-c' title='Height of the Cargo')
+          label(for='cargoHeight') Cargo H, mm
+          input(name='cargoHeight' id='cargoHeight' placeholder='Cargo Height...' value='1000' type='text' data-mini='true')
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+        div(class='ui-block-b')
+          label(style='float:right; padding-top:10px;' title='Weight of the Cargo') Cargo weight, kg
+        div(class='ui-block-c')
+          input(name='cargoWeight' id='cargoWeight' placeholder='Cargo Weight...' value='1800' type='text' data-mini='true')
+      p
+        strong(title='Rows limits by Length & Width & Height like as limits by X & Y & Z') Limits
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+          label(for='addSize' title='Additional Size for each unit in the Container') Add Size, mm
+          input(name='addSize' id='addSize' placeholder='Add size...' value='50' type='text' data-mini='true')
+        div(class='ui-block-b')
+          label(for='maxInWagon' title='Limit of units number to transport in this Container > Others will be in red') Total max, pcs
+          input(name='maxInWagon' id='maxInWagon' placeholder='Max...' value='13' type='text' data-mini='true')
+        div(class='ui-block-c')
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+          label(for='maxRowsInWagon_byWagonWidth' title='Limit of rows number by Container Width (Y)') Rows by Width, pcs
+          input(name='maxRowsInWagon_byWagonWidth' id='maxRowsInWagon_byWagonWidth' placeholder='Rows by Width...' value='1' type='text' data-mini='true')
+        div(class='ui-block-b')
+          label(for='maxRowsInWagon_byWagonLength' title='Limit of rows number by Container Length (X)') Rows by Length, pcs
+          input(name='maxRowsInWagon_byWagonLength' id='maxRowsInWagon_byWagonLength' placeholder='Rows by Length...' value='50' type='text' data-mini='true')
+        div(class='ui-block-c')
+          label(for='maxFloorsInWagon' title='Limit of rows number by Container Height (Z)') Floors number, pcs
+          input(name='maxFloorsInWagon' id='maxFloorsInWagon' placeholder='Floors...' value='1' type='text' data-mini='true')
+      
+      //- linkForCargoTest
+      div(class='ui-grid-solo ui-responsive')
+        div(class='ui-block-a')
+          button(id='confirmParams' class='ui-btn' class='ui-shadow ui-btn ui-mini ui-btn-b ui-corner-all ui-icon-check ui-btn-icon-right') Confirm
+    //-div(data-role='footer')
+      h4 Parameters could be set here
+  
+  script(src='./javascripts/loginForm.js')
+  script.
+    $(function(){
+      
+      $('#containerType').change(function(){
+        switch(this.value){
+          case 'truck_v1':
+            $('#wagonLength').val(13600).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2450).addClass('ui-state-disabled');
+            $('#wagonHeight').val(3000).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(20000).addClass('ui-state-disabled');
+            break;
+          case 'custom':
+            $('#wagonLength').removeClass('ui-state-disabled');
+            $('#wagonWidth').removeClass('ui-state-disabled');
+            $('#wagonHeight').removeClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').removeClass('ui-state-disabled');
+            break;
+          case 'truck_v2':
+            $('#wagonLength').val(7500).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2450).addClass('ui-state-disabled');
+            $('#wagonHeight').val(3000).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(10000).addClass('ui-state-disabled');
+            break;
+          case 'container_20DC':
+            $('#wagonLength').val(5898).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2260).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(2300).addClass('ui-state-disabled');
+            break;
+          case 'container_20HC':
+            $('#wagonLength').val(5898).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2580).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(2340).addClass('ui-state-disabled');
+            break;
+          case 'container_20SD':
+            $('#wagonLength').val(6050).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2440).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2272).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(1400).addClass('ui-state-disabled');
+            break;
+          case 'container_40DC':
+            $('#wagonLength').val(12030).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2260).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(4000).addClass('ui-state-disabled');
+            break;
+          case 'container_40HC':
+            $('#wagonLength').val(12030).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2580).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(4200).addClass('ui-state-disabled');
+            break;
+          case 'container_40SD':
+            $('#wagonLength').val(12032).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2287).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2348).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(5920).addClass('ui-state-disabled');
+            break;
+          default: break;
+        }
+      });
+      $('#containerType').val('truck_v1').change();
+      
+      $('#cargoType').change(function(){
+        switch(this.value){
+          case ('thermocold_chillers'):
+          case 'thermokey_drycoolers':
+            $('#maxRowsInWagon_byWagonWidth').val(1);
+            $('#maxInWagon').val(13);
+            $('#maxFloorsInWagon').val(1);
+            $('#modelName').val('');
+            
+            $("#containerType").val("truck_v1").change();
+            
+            break;
+          case 'luvata_evaporators':
+            $('#maxRowsInWagon_byWagonWidth').val(5);
+            $('#maxInWagon').val(500);
+            $('#maxFloorsInWagon').val(1);
+            $('#modelName').val('');
+            
+            $("#containerType").val("truck_v1").change();
+            
+            break;
+          case 'wxr_coolingTowers':
+            console.info('Limits was not set bu developer...');
+            $('#maxRowsInWagon_byWagonWidth').val(1);
+            $('#maxInWagon').val(13);
+            $('#maxFloorsInWagon').val(1);
+            $('#modelName').val('');
+            
+            $("#containerType").val("container_40DC").change();
+            
+            break;
+          default: console.log('Wtf?..'); break;
+        }
+      });
+      
+      $('#confirmParams').click(function(){
+        let src = 'http://selection4test.ru/projects/cargo-3d?wagonLength=' + encodeURIComponent( $('#wagonLength').val() ) +
+          '&wagonWidth=' + encodeURIComponent( $('#wagonWidth').val() ) +
+          '&wagonHeight=' + encodeURIComponent( $('#wagonHeight').val() ) +
+          '&wagonCarryingCapacity='+ encodeURIComponent( $('#wagonCarryingCapacity').val() ) +
+          '&cargoLength=' + encodeURIComponent( $('#cargoLength').val() ) +
+          '&cargoWidth=' + encodeURIComponent( $('#cargoWidth').val() ) +
+          '&cargoHeight=' + encodeURIComponent( $('#cargoHeight').val() ) +
+          '&cargoWeight=' + encodeURIComponent( $('#cargoWeight').val() ) +
+          '&addSize='+ encodeURIComponent( $('#addSize').val() ) +
+          '&maxInWagon=' + encodeURIComponent( $('#maxInWagon').val() ) +
+          '&maxRowsInWagon_byWagonWidth=' + encodeURIComponent( $('#maxRowsInWagon_byWagonWidth').val() ) +
+          '&maxRowsInWagon_byWagonLength=' + encodeURIComponent( $('#maxRowsInWagon_byWagonLength').val() ) +
+          '&maxFloorsInWagon=' + encodeURIComponent( $('#maxFloorsInWagon').val() ) +
+          '&cargoType=' + encodeURIComponent( $('#cargoType').val() ) +
+          '&containerType=' + encodeURIComponent( $('#containerType').val() ) +
+          '&modelName=' + encodeURIComponent( $('#modelName').val() );
+        
+    		$('#linkForCargoTest').attr( 'href', src );
+        $('#cargoInputParameters').dialog('close');
+        
+        // RELOAD TEST PLACE
+        $('#cargoTestPlace').attr( 'src', src );
+        $('#linkForCargoTest').addClass('ui-state-disabled').html('ES6 Promise for delay...');
+        let delay = function(ms=1000) {
+          return new Promise((res, rej)=>{ setTimeout( function(){ res() }, ms ); });
+        };
+        delay(3000).then(function(){ $('#linkForCargoTest').removeClass('ui-state-disabled').html('Link could be copied'); });
+    	});
+      
+      $('#linkForCargoTest').click(function(){
+        //console.log(this);
+        $('#linkForCargoTest').addClass('ui-state-disabled').html('ES6 Promise for delay...');
+        let delay = function(ms=1000) {
+          return new Promise((res, rej)=>{ setTimeout( function(){ res() }, ms ); });
+        };
+        delay(3000).then(function(){ $('#linkForCargoTest').removeClass('ui-state-disabled').html('Link could be copied'); });
+      });
+    });

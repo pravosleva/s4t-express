@@ -1,0 +1,97 @@
+doctype html
+html
+  head
+    meta(name='theme-color' content='#4557bb')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(charset='UTF-8')
+    title= title
+    //--link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous')
+    style.
+      body{margin:0;padding-top:20px;padding-bottom:50px;font-family:Roboto,sans-serif}h1,h2,h3,h4,h5,h6{color:#d3d3d3}label{margin-top:5px!important;margin-bottom:3px!important}.alert-warning{border-color:#cfb683}.well{border-color:gray}pre{margin-top:10px;margin-bottom:10px}
+      /*# sourceMappingURL=main.38add479.css.map*/
+    //-extends ../layouts/bs-layout
+    style.
+      .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      background-color: #374c6b;
+      overflow-x: hidden;
+      transition: 0.1s;
+      transition-property: width;
+      
+      padding-top: 60px;
+      text-align:center;
+      }
+      
+      /* ABOUT CSS3 ANIMATION
+        https://html5book.ru/css3-animation/
+      */
+      
+      @keyframes colorChange {
+        0%   {color: #374c6b;}
+        100% {color: white;}
+      }
+      @keyframes shadow {
+      from {text-shadow: 0 0 3px black;}
+      50% {text-shadow: 0 0 35px white;}
+      to {text-shadow: 0 0 3px black;}
+      }
+      .sidenav a {
+      padding: 8px 8px 8px 8px;
+      text-decoration: none;
+      font-size: 25px;
+      display: block;
+      transition: 1s;
+      color: white;
+      
+      /*
+      animation: animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction;
+      */
+      
+      animation: colorChange 4s ease-in-out;
+      /*-webkit-animation-name: colorChange;
+      -webkit-animation-duration: 1s;*/
+      }
+
+      .sidenav a:hover{
+      color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+      }
+
+      @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+      }
+body
+  
+div(id='mySidenav' class='sidenav')
+  a(href='javascript:void(0)' class='closebtn' onclick='closeNav()' style='position:absolute;') &times;
+  a(href='http://selection4test.ru/projects/auxiliary-calc' name='menu-item') Liquid Settings
+  //-a(href='http://selection4test.ru/projects/thermocold-heva-fc-test' name='menu-item') HEVA FC
+  a(href='http://selection4test.ru/projects/thermocold-lines' name='menu-item') Thermocold HEVA FC
+  a(href='http://selection4test.ru/projects/midea-lines' name='menu-item') Midea Modular SS
+  hr
+  a(href='http://selection4test.ru/' name='menu-item') Back to Home
+  //-a(href='http://selection4test.ru:3000' name='menu-item') Open chat on :3000
+span(style='font-size:30px;cursor:pointer;position:fixed;top:15px;right:30px;z-index:3;color:#374c6b;' onclick='openNav()') &#9776;
+#main
+  block content
+
+script.
+  function openNav() { document.getElementById("mySidenav").style.width = "100%"; }
+
+  function closeNav() { document.getElementById("mySidenav").style.width = "0"; }

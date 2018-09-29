@@ -1,0 +1,76 @@
+.snackbar {
+  background-color: #323232;
+  color: #FFFFFF;
+  font-size: 14px;
+
+  height: 0;
+  -moz-transition: margin 0.15s ease-in-out, -moz-transform 0.15s ease-in-out, opacity 0.15s ease-in, height 0.15s linear 0.15s, padding 0.15s linear 0.15s, height 0.15s linear 0.15s;
+  -webkit-transition: margin 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, opacity 0.15s ease-in, height 0.15s linear 0.15s, padding 0.15s linear 0.15s, height 0.15s linear 0.15s;
+  transition: margin 0.15s ease-in-out, transform 0.15s ease-in-out, opacity 0.15s ease-in, height 0.15s linear 0.15s, padding 0.15s linear 0.15s, height 0.15s linear 0.15s;
+  -moz-transform: scale(0.8, 0.5);
+  -webkit-transform: scale(0.8, 0.5);
+  transform: scale(0.8, 0.5);
+}
+.snackbar.snackbar-opened {
+  padding: 14px 15px;
+
+  height: auto;
+  -moz-transition: margin 0.35s ease-in-out, -moz-transform 0.35s ease-in-out, opacity 0.35s ease-in, height 0.35s linear 0.35s;
+  -webkit-transition: margin 0.35s ease-in-out, -webkit-transform 0.35s ease-in-out, opacity 0.35s ease-in, height 0.35s linear 0.35s;
+  transition: margin 0.35s ease-in-out, transform 0.35s ease-in-out, opacity 0.35s ease-in, height 0.35s linear 0.35s, height 0.35s linear 0.35s;
+  -moz-transform: none;
+  -webkit-transform: none;
+  transform: none;
+}
+.snackbar.toast {
+  border-radius: 200px;
+}
+@media (max-width:767px){
+  .snackbar.snackbar-opened {
+    margin-bottom: 0px;
+    border-radius: 0px;
+  }
+}
+@media (min-width:768px){
+  .snackbar.snackbar-opened {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 8px -8px 20px rgb(136, 136, 136);
+  }
+}
+
+/* customized by pravosleva */
+.snackbar.default {
+  color: #333;
+  background-color: #fff;
+  /*border: 1px solid #ccc;*/
+}
+.snackbar.default:hover {
+  opacity: 1.0;
+  color: #333;
+  background-color: #e6e6e6;
+  /*border: 1px solid #8c8c8c;*/
+}
+
+.snackbar.primary {
+  color: #FFFFFF;
+
+  background-color: #428bca;
+
+  /*border: 1px solid white;*/
+}
+
+.snackbar.danger-slate {
+  color: #ffffff;
+  background-color: #dc1c17;
+  border-color: #b71713;
+  /*border: 1px solid white;*/
+}
+
+.snackbar.danger {
+  color: #a94442;
+  background-color: #f2dede;
+
+  border: 1px solid transparent;
+  border-color: #ebccd1;
+}

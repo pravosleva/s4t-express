@@ -1,0 +1,127 @@
+doctype html
+html
+  head
+    meta(name='theme-color' content='#374c6b')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(charset='UTF-8')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet')
+    title= title
+    style.
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @font-face {
+        font-family: 'Play';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Play'), url(https://fonts.gstatic.com/s/play/v6/pnY_fwhX9LPUfjyW6oydMg.woff2) format('woff2'), url(https://fonts.gstatic.com/s/play/v6/Nw0-sh1PYRMm1zeOJOLG_Q.woff) format('woff');
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes blurIn {
+        from { filter: blur(10px); }
+        to { filter: blur(0); }
+      }
+      @keyframes scaledXIn {
+        from { transform: scaleX(1.1); }
+        to { transform: scaleX(1); }
+      }
+      .wrapper {
+        background-image: url('http://selection4test.ru:5000/remote/direct_uploads/1531057630_nate-grant-346782-unsplash.jpg');
+        background-size: cover;
+
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        z-index:1;
+        animation: fadeIn 2s ease-in;
+        overflow: hidden; /* special for scale */
+      }
+      .internal-wrapper {
+        background: transparent;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+
+        justify-content: center;
+        display: flex;
+      }
+      .internal-wrapper-bg-overlay {
+        background-color: rgba(255, 255, 255, 0.65);
+        z-index: 4;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* 3d text */
+      #text {
+        /*font-family: 'Play';*/
+        font-family: 'Montserrat',Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-weight: 700;
+        font-size: 56px;
+        @media (max-width: 767px) {}
+        /*
+          position: absolute;
+          top: 50%;
+          left: 50%;
+        */
+        text-transform: uppercase;
+        -webkit-text-transform: uppercase;
+        -moz-text-transform: uppercase;
+
+        -webkit-tranform: translateZ(0);
+        -webkit-transition-duration: 0.05s;
+        -moz-tranform: translateZ(0);
+        color: #f3f3f3;
+        text-shadow: 2px 2px 10px rgba(0,0,0,.4);
+        z-index: 5;
+
+        justify-content: center;
+        animation: blurIn 3s ease-in, scaledXIn 3s ease-in;
+      }
+  body
+    .wrapper
+      video(autoplay loop muted poster='http://selection4test.ru:5000/remote/direct_uploads/1531057630_nate-grant-346782-unsplash.jpg' style='z-index:2;width: 100%;min-width: 100%;height:auto;min-height:100%;max-height:100%;object-fit: cover;position: absolute;')
+        //- autoplay or preload - preload указывает, что ты НЕ хочешь загружать видео одновременно со страницей
+        source(src='/video/site-video-3.webm')
+      .internal-wrapper
+        .internal-wrapper-bg-overlay
+          h1#text HELLO, WORLD =)
+    script(type="text/javascript").
+      function ready(){
+        var text = document.getElementById('text'),
+          body = document.body,
+          steps = 7;
+        function threedee (e) {
+          let x = Math.round(steps / (window.innerWidth / 2) * (window.innerWidth / 2 - e.clientX)),
+            y = Math.round(steps / (window.innerHeight / 2) * (window.innerHeight / 2 - e.clientY)),
+            shadow = '',
+            color = 190,
+            radius = 3,
+            tx,
+            ty;
+          for (var i=0; i<steps; i++) {
+            tx = Math.round(x / steps * i);
+            ty = Math.round(y / steps * i);
+            if (tx || ty) {
+              color -= 3 * i;
+              shadow += tx + 'px ' + ty + 'px 0 rgb(' + color + ', ' + color + ', ' + color + '), ';
+            }
+          }
+          shadow += x + 'px ' + y + 'px 1px rgba(0,0,0,.2), ' + x*2 + 'px ' + y*2 + 'px 6px rgba(0,0,0,.3)';
+          text.style.textShadow = shadow;
+          text.style.webkitTransform = 'translateZ(0) rotateX(' + y*1.5 + 'deg) rotateY(' + -x*1.5 + 'deg)';
+          text.style.MozTransform = 'translateZ(0) rotateX(' + y*1.5 + 'deg) rotateY(' + -x*1.5 + 'deg)';
+        }
+        document.addEventListener('mousemove', threedee, false);
+      };
+      document.addEventListener('DOMContentLoaded', ready);

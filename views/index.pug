@@ -1,0 +1,677 @@
+extends ./layouts/jqm-layout
+
+append head
+  style.
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    body {
+      /* animation: fadeIn 1s ease-in; */
+    }
+  script(src='./javascripts/jquery-fullscreen-plugin/jquery.fullscreen-min.js')
+
+block content
+  //-- MAIN page content
+  div(data-role='page' class='jqm-demos' id='home' data-title='Home')
+    div(data-role='header' data-position='fixed')
+      h1= title
+      a(href='#loginForm' data-icon='lock' data-iconpos='notext').ui-state-disabled Login
+      a(href='#' style='border-radius:25px;border:1px solid lightgray;').ui-btn.ui-btn-a#fullScreen FullScreen
+      //-a(href='#' data-icon='arrow-u-r' data-iconpos='notext' id='fullScreen') FullScreen
+      //- a(href='#navPanel' data-icon='bars' data-iconpos='notext') Menu
+      //- a(href='skype:pravosleva?chat').ui-shadow.ui-btn.ui-corner-all.ui-icon-skype.ui-btn-icon-notext.ui-btn-inline
+      //- a(href='#pageFor3DExample' role='button' class='ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-star ui-btn-icon-left' data-transition='turn') Internal page test
+
+    div(role='main' class='ui-content jqm-content jqm-fullwidth')
+      //- h1 Whats'up!
+      div(class='ui-grid-solo ui-responsive')
+        div(class='ui-block-a' style='padding: .3125em;')
+          div(style='border-radius:5px; padding:0px; box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.25);')
+            div(style='border-radius:5px; width: 100%; height: calc((((100vw - 40px) * 9 ) / 16) - 300px); min-height: 450px; resize: vertical !important; overflow-y:hidden;')
+              iframe(src='/projects/_preview-1-hello-world' style='width:100%; height:100%; border:none;' name='cargoTestPlace' id='cargoTestPlace' allow='autoplay; fullscreen')
+
+      div(class='ui-grid-b ui-responsive')
+        div(class='ui-block-a')
+          a(href='#about' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-info ui-btn-icon-left') About this Full Stack
+          //- ui-btn-inline
+        div(class='ui-block-b ui-responsive')
+          a(href='#cargoInputParameters' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-left') Cargo settings
+        div(class='ui-block-c')
+          a(id='linkForCargoTest' target='cargoTestPlace' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-left' href='/projects/cargo-3d?wagonLength=13600&wagonWidth=2400&wagonHeight=3000&wagonCarryingCapacity=20000&cargoLength=1000&cargoWidth=1000&cargoHeight=1000&cargoWeight=1800&addSize=50&maxInWagon=13&maxRowsInWagon_byWagonWidth=2&maxRowsInWagon_byWagonLength=50&maxFloorsInWagon=1&cargoType=thermocold_chillers&modelName=test&containerType=truck_v1') Three.js test
+          //- ui-state-disabled
+
+      #disqus_thread(style='max-width:700px;margin:0 auto;')
+      script.
+        /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        var disqus_config = function () {
+          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://selection4test.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      noscript Please enable JavaScript to view the
+        a(href="https://disqus.com/?ref_noscript") comments powered by Disqus.
+      div(style='border: none; padding: 15px; display: flex; justify-content: center; align-items: center;')
+        hr(style='width: 100%; margin: 0 50px 0 0; border: 0; height: 2px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));')
+        img(src='https://avatars0.githubusercontent.com/u/19761493?s=460&v=4' style='object-fit: contain; width: 50px; heigth: 50px; border-radius: 50%;')
+        hr(style='width: 100%; margin: 0 0 0 50px; border: 0; height: 2px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));')
+
+      //-p
+        strong.
+          jQuery Mobile&nbsp;
+        span is used in this Front-end.
+        br
+        span The internal page could be got by link to&nbsp;
+          a(href='#examples') examples
+          span .
+          //-data-transition='turn'
+
+    //-
+      p
+        a(href='#aboutLatestProjects' role='button' class='ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-star ui-btn-icon-left' data-transition='turn') See also About Latest Projects
+      p
+        a(href='http://selection4test.ru/oldSite/index.html') Old version of this site
+
+    div(data-role='footer' data-position='fixed')
+      div(class='ui-grid-b ui-responsive' style='text-align:center;')
+        div(class='ui-block-a')
+          a(href='https://facebook.com/pravosleva/' target='_blank' class='ui-shadow ui-btn ui-corner-all ui-icon-facebook ui-btn-icon-notext ui-btn-inline ui-state-disabled')
+          //- ui-state-disabled
+        div(class='ui-block-b')
+          a(href='https://github.com/pravosleva/' target='_blank' class='ui-shadow ui-btn ui-corner-all ui-icon-github-alt ui-btn-icon-notext ui-btn-inline')
+        div(class='ui-block-c')
+          //-- a(href='skype:pravosleva?chat' class='ui-shadow ui-btn ui-corner-all ui-icon-skype ui-btn-icon-notext ui-btn-inline')
+          a(href='#navPanel' data-icon='bars' data-iconpos='notext').ui-shadow.ui-btn.ui-icon-bars.ui-corner-all.ui-btn-icon-notext.ui-btn-inline Menu
+
+    //- INTERNAL PAGE:
+    //- div(data-role='page' id='pageFor3DExample')
+      div(data-role='header')
+        h1 3D review
+        a(href='#home' data-icon='back' data-iconpos='notext') Back
+      div(role='main').ui-content
+        //-
+      div(data-role='footer')
+
+    //- PANEL 1: Right side
+    div(data-role='panel' data-position='right' data-position-fixed='true' data-display='overlay' data-theme='a' id='navPanel')
+      ul(data-role='listview')
+        li(data-icon='delete')
+          a(href='#' data-rel='close') Close
+        li
+          a(href='http://selection4test.ru:3003' target='_self') Blog
+        li
+          a(href='#examples') Examples
+        li
+          a(href='/projects/english-tenses' target='_self') English Tenses
+
+    //- PANEL 2: Left side
+    div(data-role='panel' data-position='left' data-position-fixed='true' data-display='overlay' data-theme='a' id='loginForm')
+      form(class='userform' action='/test' method='post' data-theme='b' data-msgtext='Please, wait...' data-textonly='true' data-textvisible='true' data-inline='true')
+        h2 Login
+        label(for='name') Username:
+        input(type='text' name='userName' id='userName' value='' data-clear-btn='true' data-mini='true')
+        label(for='password') Password:
+        input(type='password' name='password' id='password' value='' data-clear-btn='true' autocomplete='off' data-mini='true')
+        div(class='ui-grid-a')
+          div(class='ui-block-a')
+            a(href='#' data-rel='close' class='ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini') Cancel
+          div(class='ui-block-b')
+            button(class='ui-btn ui-shadow ui-corner-all ui-btn-a ui-mini' type='submit') Submit
+      p
+        i.
+          It's for my tests only.
+        br
+        i.
+          Not for usage yet...
+
+  //- DIALOG 1: Examples
+  div(data-role='dialog' data-theme='a' id='examples' data-close-btn='right')
+    div(data-role='header' data-theme='a')
+      h1 Examples
+    div(role='main' class='ui-content')
+      //-p
+        a(href='#home' data-rel='back' class='ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left') Back to Home
+      ul(data-role='listview')
+        //-li
+          a(href='http://selection4test.ru:1350/dme' target='_self') Socket.IO + React & Polling from Back-end
+        //-li
+          a(href='http://selection4test.ru:3001' target='_self') Socket.IO example as private chat test
+
+        //-li
+          a(href='/projects/cargo-react' target='_self') Cargo as React example
+        //-li
+          a(href='http://zavodsezon.ru/sezon_podbor.html' target='_blank') VENT Eq review example '14
+        li: a(href='/projects/sezon-lines' target='_blank') VENT Eq review example '18
+        li: a(href='/projects/th-pres' target='_blank') HVAC Eq review as React / Redux example
+        //-li: a(href='/projects/total-work-time-analysis' target='_blank') Total Work Time Analysis '17
+        li: a(href='/projects/auxiliary-calc' target='_self') Auxiliary Liquid Calc '18
+        //-li: a(href='http://selection4test.ru/projects/thermocold-heva-fc-test' target='_self') Chillers Calc Test
+        //-li: a(href='http://selection4test.ru/projects/get-offer-react-gallery/' target='_self') Get Offer
+        //-li: a(href='http://selection4test.ru/projects/cargo-react/index.html') React example
+        //-li: a(href='http://selection4test.ru/projects/gpo/build/index.html') Redux example 1
+        li: a(href='http://selection4test.ru:1350/dme' target='_self') React / Socket.IO / Polling / CSS Grid
+        li: a(href='http://selection4test.ru:5000/' target='_self') Portfolio example
+        //-li: a(href='http://selection4test.ru:1337/todo.html' target='_self') Simple TODO with socket.io
+        li: a(href='http://selection4test.ru/projects/react-maps-lab' target='_self') React Maps Lab (internal routing)
+        li: a(href='http://selection4test.ru:1111' target='_self') Next.js usage (server side rendering)
+    div(data-role='footer')
+      h4 We have done some examples.
+
+  //- DIALOG 3: About this Full Stack
+  div(data-role='dialog' data-theme='a' id='about' data-close-btn='right')
+    div(data-role='header' data-theme='a')
+      h1 About this Full Stack
+    div(data-role='main' class='ui-content')
+      p Сочетание JS+Node+Express - идеальный выбор для команд веб-разработчиков, которым нужен мощный, быстроразвертываемый стек.
+      p Единственная проблема JS - это чувствительность к неуклюжему программированию. Экосистема Node меняет это, предоставляя библиотеки, фреймворки и утилиты, ускоряющие разработку и поощряющие написание хорошего кода.
+      p
+        b Jade was renamed to Pug.&nbsp;
+        span Pug отлично интегрируется с Express. Использование шаблонизаторов необходимо для случаев обилия шаблонного кода, т.к. сам HTML слишком перегружен деталями и трудоемкий для написания вручную.
+    div(data-role='footer')
+      h4.
+        &copy; Ethan Brown
+
+  //- DIALOG 4: Cargo - input params
+  div(data-role='dialog' data-theme='a' id='cargoInputParameters' data-close-btn='right')
+    div(data-role='header' data-theme='a')
+      h1 Parameters
+    div(role='main' class='ui-content')
+      //-p
+        strong(title='Standart Container Type could be selected (Wagon === Container in main context)') Main
+      div(data-role='collapsible' data-content-theme='false' data-collapsed='true' data-mini='true' data-iconpos='right' data-collapsed-icon='carat-d' data-expanded-icon='carat-u')
+        h4 Main
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+            label(for='cargoType') Cargo Type
+            select(name='cargoType' id='cargoType' data-mini='true')
+              option(value='thermocold_chillers' selected) Thermocold Chillers
+              option(value='thermokey_drycoolers') Thermokey DryCoolers
+              option(value='bluebox_chillers') BlueBox Chillers
+              //-option(value='luvata_evaporators') Luvata Evaporators
+              //-option(value='wxr_coolingTowers') W.X.R Cooling Towers
+          div(class='ui-block-b')
+            label(for='containerType' title='Container Type') Container Type
+            select(name='containerType' id='containerType' data-mini='true')
+              option(value='truck_v1' selected) Truck 13.6 m
+              option(value='truck_v2') Truck 7.5 m
+              option(value='custom') Custom
+              option(value='container_20DC') 20' DC
+              option(value='container_20HC') 20' HC
+              option(value='container_20SD') 20' SD
+              option(value='container_40DC') 40' DC
+              option(value='container_40HC') 40' HC
+              option(value='container_40SD') 40' SD
+          div(class='ui-block-c')
+            label(for='modelName') Model Name
+            input(name='modelName' id='modelName' placeholder='Model Name...' value='test' type='text' data-mini='true')
+
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a' title='Lendth of the Container')
+            label(for='wagonLength') Container L, mm
+            input(name='wagonLength' id='wagonLength' placeholder='Wagon Length...' value='13600' type='text' data-mini='true')
+          div(class='ui-block-b')
+            label(for='wagonWidth' title='Width of the Container') Container W, mm
+            input(name='wagonWidth' id='wagonWidth' placeholder='Wagon Width...' value='2450' type='text' data-mini='true')
+          div(class='ui-block-c')
+            label(for='wagonHeight' title='Height of the Container') Container H, mm
+            input(name='wagonHeight' id='wagonHeight' placeholder='Wagon Height...' value='3000' type='text' data-mini='true')
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+          div(class='ui-block-b')
+            label(style='float:right; padding-top:10px;' title='Carrying Capacity of this Transport Container') Max Weight, kg
+          div(class='ui-block-c')
+            input(name='wagonCarryingCapacity' id='wagonCarryingCapacity' placeholder='Carrying Capacity...' value='20000' type='text' data-mini='true')
+
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+            label(for='cargoLength' title='Lendth of the Cargo') Cargo L, mm
+            input(name='cargoLength' id='cargoLength' placeholder='Cargo Length...' value='1000' type='text' data-mini='true')
+          div(class='ui-block-b' title='Width of the Cargo')
+            label(for='cargoWidth') Cargo W, mm
+            input(name='cargoWidth' id='cargoWidth' placeholder='Cargo Width...' value='1000' type='text' data-mini='true')
+          div(class='ui-block-c' title='Height of the Cargo')
+            label(for='cargoHeight') Cargo H, mm
+            input(name='cargoHeight' id='cargoHeight' placeholder='Cargo Height...' value='1000' type='text' data-mini='true')
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+          div(class='ui-block-b')
+            label(style='float:right; padding-top:10px;' title='Weight of the Cargo') Cargo Weight, kg
+          div(class='ui-block-c')
+            input(name='cargoWeight' id='cargoWeight' placeholder='Cargo Weight...' value='1800' type='text' data-mini='true')
+      //-p
+        strong(title='Rows limits by Length & Width & Height like as limits by X & Y & Z') Limits
+      div(data-role='collapsible' data-content-theme='false' data-mini='true' data-iconpos='right' data-collapsed-icon='carat-d' data-expanded-icon='carat-u')
+        h4 Dims Limits
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+            label(for='addSize' title='Additional Size for each unit in the Container') Add Size, mm
+            input(name='addSize' id='addSize' placeholder='Add size...' value='50' type='text' data-mini='true')
+          div(class='ui-block-b')
+            label(style='color:red;' for='maxInWagon' title='Limit of units number to transport in this Container > Others will be in red') Total max, pcs
+            input(name='maxInWagon' id='maxInWagon' placeholder='Max...' value='13' type='text' data-mini='true')
+          div(class='ui-block-c')
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+            label(for='maxRowsInWagon_byWagonWidth' title='Limit of rows number by Container Width (Y)') Rows by Width, pcs
+            input(name='maxRowsInWagon_byWagonWidth' id='maxRowsInWagon_byWagonWidth' placeholder='Rows by Width...' value='2' type='text' data-mini='true')
+          div(class='ui-block-b')
+            label(for='maxRowsInWagon_byWagonLength' title='Limit of rows number by Container Length (X)') Rows by Length, pcs
+            input(name='maxRowsInWagon_byWagonLength' id='maxRowsInWagon_byWagonLength' placeholder='Rows by Length...' value='50' type='text' data-mini='true')
+          div(class='ui-block-c')
+            label(for='maxFloorsInWagon' title='Limit of rows number by Container Height (Z)') Floors number, pcs
+            input(name='maxFloorsInWagon' id='maxFloorsInWagon' placeholder='Floors...' value='1' type='text' data-mini='true')
+
+      div(data-role='collapsible' data-content-theme='false' data-mini='true' data-iconpos='right' data-collapsed-icon='carat-d' data-expanded-icon='carat-u')
+        h4 Quick Retail Test
+          span.ui-state-disabled &ensp;Single wgn
+        div(class='ui-grid-solo ui-responsive')
+          div(class='ui-block-a').ui-state-disabled
+            label(for='brand' title='Brand Name') Brand
+            select(name='brand' id='brand' data-mini='true')
+              option(value='thermocold' selected) Thermocold
+              option(value='thermokey') Thermokey
+              option(value='bluebox') BlueBox
+              option(value='noname') No Name
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+            label(for='eqPrice' title='Equipment Net Price') Price 1 pcs
+            input(name='eqPrice' id='eqPrice' placeholder='Eq' value='' type='text' data-mini='true')
+          div(class='ui-block-b')
+            label(for='accssPrice' title='Accessories Net Price') Price 1 pcs
+            input(name='accssPrice' id='accssPrice' placeholder='Accss' value='' type='text' data-mini='true')
+          div(class='ui-block-c')
+            label(for='multiplier' title='Discount by Manufacturer') Discount
+            input(name='multiplier' id='multiplier' placeholder='Mult' value='1' type='text' data-mini='true')
+        div(class='ui-grid-b ui-responsive')
+          div(class='ui-block-a')
+            label(for='outputRetail' title='Output Delivery Price') Retail
+              span.exwLabelInfo.ui-state-disabled
+            input(name='outputRetail' id='outputRetail' placeholder='Retail' value='' type='text' data-mini='true').ui-state-disabled
+          div(class='ui-block-b')
+            label(for='outputEXW' title='Output EXW') EXW
+              span.exwLabelInfo.ui-state-disabled
+            input(name='outputEXW' id='outputEXW' placeholder='EXW' class='ui-state-disabled' value='' type='text' data-mini='true')
+          //-div(class='ui-block-c')
+            label(for='outputCustom' title='Output Custom') Custom
+            code(name='outputCustom')#outputCustom.ui-state-disabled [ in process ]
+          div(class='ui-block-c')
+            label(for='outputCustom' title='Quick test') Quick test
+            button(id='quickRetailTestBtn' style='max-width:210px;' data-mini='true').ui-shadow.ui-btn.ui-mini.ui-btn-a.ui-corner-all Retail
+            //-ui-icon-star ui-btn-icon-right
+        div(class='ui-grid-solo ui-responsive')
+          div(class='ui-block-a')
+            span#outputRetailReport
+              code Retail report will be set here...
+        //-div(class='ui-grid-a ui-responsive')
+          div(class='ui-block-a')
+          div(class='ui-block-b')
+            button(id='quickRetailTestBtn' style='max-width:210px;' class='ui-shadow ui-btn ui-mini ui-btn-a ui-corner-all ui-icon-star ui-btn-icon-right') Quick Retail Test
+      div(data-role='collapsible' data-content-theme='false' data-mini='true' data-iconpos='right' data-collapsed-icon='carat-d' data-expanded-icon='carat-u')
+        h4 Comment by Developer
+        div(class='ui-grid-solo ui-responsive')
+          div(class='ui-block-a')
+            span#outputServiceMsg
+              code Service msg will be set here...
+
+      //- linkForCargoTest
+      div(class='ui-grid-solo ui-responsive')
+        div(class='ui-block-a')
+          button(id='confirmParams' class='ui-shadow ui-btn ui-mini ui-btn-b ui-corner-all ui-icon-check ui-btn-icon-right') Confirm
+    //-div(data-role='footer')
+      h4 Parameters could be set here
+
+  script(src='./javascripts/loginForm.js')
+  script.
+    $(function(){
+      // AUXILIARY Fs
+      function _substringTest (substr, str) {
+        str = String(str).toLowerCase();
+        substr = String(substr).toLowerCase();
+        return (str.indexOf (substr) !== -1);
+      };
+      function _checkAndReplaceCommaToPoint (str) { return _substringTest(",", str) ? (str).replace(",", ".") : str };
+
+      $('#containerType').change(function(){
+        switch(this.value){
+          case 'truck_v1':
+            $('#wagonLength').val(13600).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2450).addClass('ui-state-disabled');
+            $('#wagonHeight').val(3000).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(20000).addClass('ui-state-disabled');
+            break;
+          case 'custom':
+            $('#wagonLength').removeClass('ui-state-disabled');
+            $('#wagonWidth').removeClass('ui-state-disabled');
+            $('#wagonHeight').removeClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').removeClass('ui-state-disabled');
+            break;
+          case 'truck_v2':
+            $('#wagonLength').val(7500).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2450).addClass('ui-state-disabled');
+            $('#wagonHeight').val(3000).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(10000).addClass('ui-state-disabled');
+            break;
+          case 'container_20DC':
+            $('#wagonLength').val(5898).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2260).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(274000).addClass('ui-state-disabled');
+            break;
+          case 'container_20HC':
+            $('#wagonLength').val(5898).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2580).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(276000).addClass('ui-state-disabled');
+            break;
+          case 'container_20SD':
+            $('#wagonLength').val(6050).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2440).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2272).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(143850).addClass('ui-state-disabled');
+            break;
+          case 'container_40DC':
+            $('#wagonLength').val(12030).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2260).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(730600).addClass('ui-state-disabled');
+            break;
+          case 'container_40HC':
+            $('#wagonLength').val(12030).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2340).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2580).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(730600).addClass('ui-state-disabled');
+            break;
+          case 'container_40SD':
+            $('#wagonLength').val(12032).addClass('ui-state-disabled');
+            $('#wagonWidth').val(2287).addClass('ui-state-disabled');
+            $('#wagonHeight').val(2348).addClass('ui-state-disabled');
+            $('#wagonCarryingCapacity').val(270000).addClass('ui-state-disabled');
+            break;
+          default: break;
+        }
+
+      });
+      $('#containerType').val('truck_v1').change();
+
+      $('#cargoType').change(function(){
+        switch(this.value){
+          case 'thermocold_chillers':
+          case 'thermokey_drycoolers':
+          case 'bluebox_chillers':
+            $('#maxRowsInWagon_byWagonWidth').val(2);
+            $('#maxInWagon').val(13);
+            $('#maxFloorsInWagon').val(1);
+            $('#modelName').val('');
+
+            $("#containerType").val("truck_v1").change();
+
+            break;
+          case 'luvata_evaporators':
+            $('#maxRowsInWagon_byWagonWidth').val(5);
+            $('#maxInWagon').val(500);
+            $('#maxFloorsInWagon').val(1);
+            $('#modelName').val('');
+
+            $("#containerType").val("truck_v1").change();
+
+            break;
+          case 'wxr_coolingTowers':
+            console.info('Limits was not set by developer...');
+            $('#maxRowsInWagon_byWagonWidth').val(1);
+            $('#maxInWagon').val(13);
+            $('#maxFloorsInWagon').val(1);
+            $('#modelName').val('');
+
+            $("#containerType").val("container_40DC").change();
+
+            break;
+          default: console.log('Wtf?..'); break;
+        };
+
+        let selectedBrand = this.value.split('_')[0];
+        $('#brand').val(selectedBrand).change();
+        this.blur();
+      });
+
+      $('#confirmParams').click(function(){
+        let src = '/projects/cargo-3d?wagonLength=' + encodeURIComponent( $('#wagonLength').val() ) +
+          '&wagonWidth=' + encodeURIComponent( $('#wagonWidth').val() ) +
+          '&wagonHeight=' + encodeURIComponent( $('#wagonHeight').val() ) +
+          '&wagonCarryingCapacity='+ encodeURIComponent( $('#wagonCarryingCapacity').val() ) +
+          '&cargoLength=' + encodeURIComponent( $('#cargoLength').val() ) +
+          '&cargoWidth=' + encodeURIComponent( $('#cargoWidth').val() ) +
+          '&cargoHeight=' + encodeURIComponent( $('#cargoHeight').val() ) +
+          '&cargoWeight=' + encodeURIComponent( $('#cargoWeight').val() ) +
+          '&addSize='+ encodeURIComponent( $('#addSize').val() ) +
+          '&maxInWagon=' + encodeURIComponent( $('#maxInWagon').val() ) +
+          '&maxRowsInWagon_byWagonWidth=' + encodeURIComponent( $('#maxRowsInWagon_byWagonWidth').val() ) +
+          '&maxRowsInWagon_byWagonLength=' + encodeURIComponent( $('#maxRowsInWagon_byWagonLength').val() ) +
+          '&maxFloorsInWagon=' + encodeURIComponent( $('#maxFloorsInWagon').val() ) +
+          '&cargoType=' + encodeURIComponent( $('#cargoType').val() ) +
+          '&containerType=' + encodeURIComponent( $('#containerType').val() ) +
+          '&modelName=' + encodeURIComponent( $('#modelName').val() );
+
+    		$('#linkForCargoTest').attr( 'href', src );
+        $('#cargoInputParameters').dialog('close');
+
+        // RELOAD TEST PLACE
+        $('#cargoTestPlace').html('');
+        $('#cargoTestPlace').attr( 'src', src );
+        $('#linkForCargoTest').addClass('ui-state-disabled').html('ES6 Promise for delay...');
+
+        $('#cargoTestPlace').load(function(){
+          delay(5000)
+            .then(() => {
+              $('#linkForCargoTest').removeClass('ui-state-disabled').html('Link could be copied');
+            });
+        });
+
+    	  this.blur();
+      });
+
+      function delay(ms=1000) {
+        return new Promise((res, rej)=>{ setTimeout( function(){ res() }, ms ); });
+      };
+      $('#linkForCargoTest').click(function(e){
+        //e.preventDefault();
+        //$(this).attr( 'href', $(this).attr('href') );
+        //$('#cargoTestPlace').html('');
+        $('#linkForCargoTest').addClass('ui-state-disabled').html('ES6 Promise for delay...');
+        /*
+        $('#cargoTestPlace').load($('#linkForCargoTest').attr('href'), function(response, status, xhr){
+          //console.log(status);
+          if (status=='error') { console.log("Sorry but there was an error: " + xhr.status + " " + xhr.statusText);
+            $('#linkForCargoTest').removeClass('ui-state-disabled').html('Unsuccessfully');
+          } else {
+            delay(5000)
+              .then(() => {
+                $('#linkForCargoTest').removeClass('ui-state-disabled').html('Link could be copied');
+              });
+          }
+        });
+        */
+        //try{
+          delay(5000)
+            .then(() => {
+              $('#linkForCargoTest').removeClass('ui-state-disabled').html('Link could be copied');
+            });
+        //} catch (err) {
+        //  $('#linkForCargoTest').removeClass('ui-state-disabled').html('Unsuccessfully');
+        //}
+      });
+
+      // QUICK RETAIL TEST
+      function _defaultRetailSection(){
+        $('#outputRetail').val('');
+        $('#outputEXW').val('');
+        $('#outputServiceMsg').html('<code>Service msg will be set here...</code>');
+        $('#outputRetailReport').html('<code>Retail report will be set here...</code>');
+        $('.exwLabelInfo').html((``));
+
+        $('#quickRetailTestBtn').removeClass('ui-state-disabled').html('Retail');
+
+      };
+      $('#brand').change(() => _defaultRetailSection() );
+      function myAsyncRequest (url) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", url);
+          xhr.onload = () => resolve(JSON.parse(xhr.responseText));
+          xhr.onerror = () => reject(xhr.statusText);
+          xhr.send();
+        });
+      };
+
+      function onRequest (arg) {
+        let { url, toBeOrNotToBe, callbackAsResolve, callbackAsReject } = arg;
+        console.log ("onRequest ()", url, toBeOrNotToBe());
+
+        $('#quickRetailTestBtn').addClass('ui-state-disabled').html('ES6 Promise for delay...');
+
+        if (toBeOrNotToBe()) {
+          myAsyncRequest (url)
+            .then (
+              function (result){
+                console.log (`onRequest () done`);
+                callbackAsResolve(result);
+
+              },
+              function(){
+                callbackAsReject(`onRequest () failed`);
+              }
+            )
+            .then (function (){
+              console.log (`end of myAsyncRequest () Promise`);
+              $('#quickRetailTestBtn').blur();
+            })
+        } else { console.log(`toBeOrNotToBe () is false`) }
+      };
+      function _getMultiplier(brand){
+        switch(brand){
+          case 'thermocold': return 0.3;
+          case 'thermokey': return 0.39;
+          default: return 1.0;
+        }
+      };
+      $('#multiplier').val( _getMultiplier($('#brand').val()) );
+      $('#brand').change(function(){
+        $('#multiplier').val(_getMultiplier(this.value));
+        this.blur();
+      });
+      $('#quickRetailTestBtn').click(function(){
+        _defaultRetailSection();
+        //$('#outputServiceMsg').html('<code>Please, wait...</code>');
+        $.mobile.loading( 'show', {
+          text: 'Please, wait...',
+          textVisible: true,
+          theme: 'b',
+          html: ''
+        });
+        let url = '/calculate?' +
+          'brand=' + encodeURIComponent( $('#brand').val() ) +
+          '&model=' + encodeURIComponent( $('#modelName').val() ) +
+          '&wagonCarryingCapacity='+ encodeURIComponent( $('#wagonCarryingCapacity').val() ) +
+          '&length=' + encodeURIComponent( $('#cargoLength').val() ) +
+          '&width=' + encodeURIComponent( $('#cargoWidth').val() ) +
+          '&height=' + encodeURIComponent( $('#cargoHeight').val() ) +
+          '&weight=' + encodeURIComponent( $('#cargoWeight').val() ) +
+          '&addSize='+ encodeURIComponent( $('#addSize').val() ) +
+
+          '&wagonLength=' + encodeURIComponent( $('#wagonLength').val() ) +
+          '&wagonWidth=' + encodeURIComponent( $('#wagonWidth').val() ) +
+          '&wagonHeight=' + encodeURIComponent( $('#wagonHeight').val() ) +
+
+          '&maxInWagon=' + encodeURIComponent( $('#maxInWagon').val() ) +
+          '&maxRowsInWagon_byWagonWidth=' + encodeURIComponent( $('#maxRowsInWagon_byWagonWidth').val() ) +
+          '&maxRowsInWagon_byWagonLength=' + encodeURIComponent( $('#maxRowsInWagon_byWagonLength').val() ) +
+          '&maxFloorsInWagon=' + encodeURIComponent( $('#maxFloorsInWagon').val() ) +
+          '&eqPrice=' + encodeURIComponent( _checkAndReplaceCommaToPoint( $('#eqPrice').val() ) ) +
+          '&accssPrice=' + encodeURIComponent( _checkAndReplaceCommaToPoint( $('#accssPrice').val() ) ) +
+          '&multiplier=' + encodeURIComponent( _checkAndReplaceCommaToPoint( $('#multiplier').val() ) ) +
+          '&cargoType=' + encodeURIComponent( _checkAndReplaceCommaToPoint( $('#cargoType').val() ) );
+        onRequest({
+          url,
+          toBeOrNotToBe: () => true,
+          callbackAsResolve: function(data){
+            console.log(data);
+            $('#outputServiceMsg #outputRetailReport').html('<code>Please, keep wating for delay...</code>');
+            delay(1000)
+              .then(function(){
+                let _getCoeffLimits = brand => {
+                  let min, max;
+                  switch (brand) {
+                    case 'bluebox': min=1.3; max=1.55; break;
+                    case 'luvata': min=1.25; max=1.65; break;
+                    case 'thermocold': min=1.25; max=1.6; break;
+                    case 'thermokey': min=1.25; max=1.65; break;
+
+                    default: min=1.25; max=1.65;
+                  }
+                  return { min, max }
+                };
+
+                let coeff = (data.result.retail.costPrice)/data.result.retail.EXW,
+                  coeffLimits = _getCoeffLimits( $('#cargoType').val().split('_')[0] ),
+                  isCoeffCorrect = coeff >= coeffLimits.min && coeff <= coeffLimits.max ? true : false;
+
+                $('#outputRetail').val((data.result.retail.result).toFixed(2));
+                $('#outputEXW').val((data.result.retail.EXW).toFixed(2));
+                $('#outputRetailReport').html(
+                  '<code>' +
+                  'Delivery= ' + (data.result.retail.transportData.delivery.result).toFixed(2) + '<br/>' +
+                  'Custom= ' + (data.result.retail.customData.result).toFixed(2) + '<br/>' +
+                  'Formal= ' + (data.result.retail.formalData.result).toFixed(2) + '<br/>' +
+                  '<strong style="color:' + (isCoeffCorrect===true?'green':'red') + ';">costPrice/EXW= ' + (data.result.retail.costPrice).toFixed(2) + '/' + (data.result.retail.EXW).toFixed(2) + '= ' + ((data.result.retail.costPrice)/data.result.retail.EXW).toFixed(2) + '</strong>' +
+                  (coeff < coeffLimits.min ? '<br/><span style="color:blue;">minimal costPrice/EXW= ' + coeffLimits.min + '</span> <span style="color:lightgray;">for ' + $('#cargoType').val().split('_')[0] + '</span>' : '') +
+                  (coeff > coeffLimits.max ? '<br/><span style="color:blue;">maximal costPrice/EXW= ' + coeffLimits.max + '</span> <span style="color:lightgray;">for ' + $('#cargoType').val().split('_')[0] + '</span>' : '') +
+                  '</code>'
+                );
+                $('#outputServiceMsg').html(
+                  '<code>' +
+                  '<strong>Delivery</strong> ' + data.result.retail.transportData.delivery.message + '<br/>' +
+                  '<strong>Custom</strong> ' + data.result.retail.customData.message + '<br/>' +
+                  '<strong>Retail</strong> ' + data.result.retail.message +
+                  '</code>'
+                );
+                $('.exwLabelInfo').html((` ${data.result.cargoConfig.result} pcs`));
+              })
+              .then(function(){
+                $('#quickRetailTestBtn').removeClass('ui-state-disabled').html('Retail');
+                $.mobile.loading( 'hide' );
+              })
+              .catch(() => {
+                $('#quickRetailTestBtn').removeClass('ui-state-disabled').html('Retail');
+                $.mobile.loading( 'hide' );
+              });
+          },
+          callbackAsReject: function(data){
+            console.log(data);
+            delay(3000)
+              .then(function(){
+                console.error('onRequest () failed');
+                $.mobile.loading( 'hide' );
+              })
+              .then(function(){
+                _defaultRetailSection();
+                $('#outputServiceMsg').html('<code>onRequest () failed</code>');
+              })
+              .catch(() => {
+                $('#quickRetailTestBtn').removeClass('ui-state-disabled').html('Retail');
+                $.mobile.loading( 'hide' );
+              });;
+          }
+        });
+        this.blur();
+      });
+
+      $('#fullScreen').click(function(e){ e.preventDefault(); $(document).toggleFullScreen(); this.blur(); } );
+    });

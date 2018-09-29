@@ -1,0 +1,315 @@
+extends ../layouts/jqm-layout
+
+append head
+  script(src='/javascripts/jquery-fullscreen-plugin/jquery.fullscreen-min.js')
+  style.
+    @media all and (max-width: 35em) {
+      .ui-responsive > .ui-block-a, .ui-responsive > .ui-block-b, .ui-responsive > .ui-block-c, .ui-responsive > .ui-block-d, .ui-responsive > .ui-block-e {
+        width: 100%;
+        float: none;
+      }
+    }
+    .ui-page {
+      background-color: white !important;
+    }
+    .shadow {
+      box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.25);
+    }
+    .text-muted { color: gray; }
+
+block content
+  //-- MAIN page content (params should be taken as strings: title, footer)
+  div(data-role='page' class='jqm-demos ui-responsive-panel' id='sorry' data-title='English Tenses')
+    div(data-role='header' data-position='fixed')
+      h1 Helpful materials
+      a(href='http://selection4test.ru/' target='_self' data-icon='back' data-iconpos='notext') Back
+      //-a(href='#' data-icon='arrow-u-r' data-iconpos='notext' id='fullScreen') FullScreen
+      a(href='#' style='border-radius:25px;border:1px solid lightgray;').ui-btn.ui-btn-a#fullScreen FullScreen
+      script.
+        $(function(){
+          $('#fullScreen').click( function(e){
+            e.preventDefault();
+            $(document).toggleFullScreen();
+            this.blur();
+          } );
+        });
+    div(role='main' class='ui-content jqm-content jqm-fullwidth')
+      h1= title
+
+      div(data-role='collapsibleset'  data-collapsed-icon='arrow-r' data-expanded-icon='arrow-d' class='shadow')
+        div(data-role='collapsible')
+          h3 Present Simple
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher asks a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil is asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i Usually, every day, always, often, seldom, sometimes.
+
+        div(data-role='collapsible')
+          h3 Present Continuous
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher is asking a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil is being asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i Now, at the moment, at present, still.
+
+        div(data-role='collapsible')
+          h3 Present Perfect
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher has asked a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil has been asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i Already, just, ever, never, yet, not yet, today.
+
+        div(data-role='collapsible')
+          h3 Present Perfect Continuous
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher has been asking a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span -
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i For an hour, up to now, since 7 o'clock.
+
+        div(data-role='collapsible')
+          h3 Past Simple
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher asked a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil was asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i Yesterday, 2 days ago, last week.
+
+        div(data-role='collapsible')
+          h3 Past Continuous
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher was asking a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil was being asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i 1. At 7 o'clock, from 6 till 7, all day long.
+                  br
+                  i 2.When... While...
+
+        div(data-role='collapsible')
+          h3 Past Perfect
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher had asked a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil had been asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i 1. By 7 o'clock yesterday.
+                  br
+                  i 2. Before you came.
+
+        div(data-role='collapsible')
+          h3 Past Perfect Continuous
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher had been asking a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span -
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i Since 7 o'clock, for an hour.
+
+        div(data-role='collapsible')
+          h3 Future Simple
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher will ask a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil will be asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i Tomorrow, in 3 days, next week.
+
+        div(data-role='collapsible')
+          h3 Future Continuous
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher will be asking a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span -
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i 1. At 3 o'clock tomorrow, From 6 till 7.
+                  br
+                  i 2. When you come.
+
+        div(data-role='collapsible')
+          h3 Future Perfect
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher will have asked a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span A pupil will have been asked by a teacher.
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i 1. By 7 o'clock tomorrow.
+                  br
+                  i 2. Before you come.
+
+        div(data-role='collapsible')
+          h3 Future Perfect Continuous
+          div(class='ui-grid-b ui-responsive')
+            div(class='ui-block-a')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Active Voice
+                  br
+                  span A teacher will have been asking a pupil.
+            div(class='ui-block-b')
+              div(class='ui-body ui-body-d')
+                div
+                  strong Passive Voice
+                  br
+                  span -
+            div(class='ui-block-c')
+              div(class='ui-body ui-body-d')
+                div(class='text-muted')
+                  strong Time to use
+                  br
+                  i Since 7 o'clock, for an hour.
+
+    div(data-role='footer' data-position='fixed')
+      h4
+        a(href= footerLink) #{footerTxt}
+        span &nbsp;2017

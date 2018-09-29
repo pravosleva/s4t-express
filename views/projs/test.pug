@@ -1,0 +1,131 @@
+doctype html
+html
+  head
+    meta(name='theme-color' content='#374c6b')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(charset='UTF-8')
+    title= title
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    style.
+      html { height: 100%; }
+      body {
+        padding: 30px;
+      }
+      img { padding: 5px; }
+      #imgBig { width: 400px }
+      #img1, #img2, #img3 { width: 214px; height: 162px; }
+      #imgRandom { width: 100px; height: 100px }
+  body
+    img(src='http://challe.ru/img/boulogne/thmb/karamel_th-brash2.png' srcbig='http://challe.ru/img/boulogne/karamel-brash2.png' style='display:none')#img1
+    img(src='http://challe.ru/img/boulogne/thmb/karamel_th-brash3.png' srcbig='http://challe.ru/img/boulogne/karamel-brash3.png' style='display:none')#img2
+    img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/%D0%9F%D0%B0%D1%80%D0%BA%D0%B5%D1%82_%D1%81%D1%82%D0%B0%D1%80%D1%8B%D0%B9.JPG/220px-%D0%9F%D0%B0%D1%80%D0%BA%D0%B5%D1%82_%D1%81%D1%82%D0%B0%D1%80%D1%8B%D0%B9.JPG' srcbig='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/%D0%9F%D0%B0%D1%80%D0%BA%D0%B5%D1%82_%D1%81%D1%82%D0%B0%D1%80%D1%8B%D0%B9.JPG/220px-%D0%9F%D0%B0%D1%80%D0%BA%D0%B5%D1%82_%D1%81%D1%82%D0%B0%D1%80%D1%8B%D0%B9.JPG' style='display:none')#img3
+    img(src='http://challe.ru/img/boulogne/karamel-right1.png' style='display:inline' name='order')
+    img(src='http://challe.ru/img/boulogne/karamel-right2.png' style='display:none' name='order')
+    hr
+    img(src='http://challe.ru/img/boulogne/karamel-brash2.png')#imgBig
+    script.
+      $(function(){
+        
+        var arrayMethods = Object.getOwnPropertyNames( Array.prototype );
+        arrayMethods.forEach( attachArrayMethodsToNodeList );
+        function attachArrayMethodsToNodeList(methodName){
+          if(methodName !== "length") {
+            NodeList.prototype[methodName] = Array.prototype[methodName];
+          }
+        };
+
+        let _getSrcListByName = (name= 'order') => {
+          let imgs = document.getElementsByName(name), imgSrcList = [];
+          for(let i=0, max=imgs.length; i<max; i++)
+            imgSrcList.push(imgs[i].src);
+          return imgSrcList;
+        };
+        
+        // FIRST
+        _show( $('#img1') );
+        _show( $('#img2') );
+        
+        function _hide(element){ $(element).css({ 'display': 'none' }); }
+        function _show(element){ $(element).css({ 'display': 'inline' }); }
+        
+        $('#img1, #img2, #img3').click(function(){
+          console.log(this.id);
+          _show( $('#img1') );
+          _show( $('#img2') );
+          _show( $('#img3') );
+          _hide(this);
+          
+          let srcbig = $(this).attr('srcbig');
+          $('#imgBig').attr( 'src', srcbig );
+          
+          let _getNextItemSrc = function(src){
+            let srcArray = _getSrcListByName(),
+              nextSrc, nextId;
+            for(let i=0, max=srcArray.length; i<max; i++){
+              let _detected = srcArray[i] == String(src);
+              
+              if(_detected == true){
+                console.log(i, srcArray[i])
+                if( i < (max-1) ){
+                  nextSrc = srcArray[i+1];
+                  nextId = 'img' + (i+1);
+                }else{ nextSrc = srcArray[0]; nextId = 'img1'; }
+              }else{
+                //console.log(srcArray[i] + " != " + src);
+              }
+            }
+            console.log(nextSrc);
+            return {
+              id: nextId,
+              src: nextSrc
+            }
+          };
+          
+          let _getCurrentDisplayedItemSrc = (name= 'order') => {
+            let imgs = document.getElementsByName(name);
+            console.log(imgs);
+            let currentDisplayedItems = imgs.filter(function(e, i, a){
+              if(e.style.display == 'inline'){
+                return true
+              }
+            });
+            //console.log(currentDisplayedItems[0].src)
+            //console.log('DISPLAYED of ' + currentDisplayedItems.length + ' > ' + currentDisplayedItems[0].src);
+            return {
+              id: currentDisplayedItems[0].id,
+              src: currentDisplayedItems[0].src,
+            };
+          };
+          
+          //console.group('NEXT');
+          console.log( 'CURRENT SRC: ' + _getCurrentDisplayedItemSrc().src );
+          console.log( 'RESULT NEXT SRC: ' + _getNextItemSrc( _getCurrentDisplayedItemSrc().src ).src );
+          //console.groupEnd('NEXT');
+          
+          let _display = (switchOff) => {
+            //$('[name=order]').css('display','none');
+            $('body').find('img[name=order]').each(function(){
+              //console.log($(this));
+              //console.log($(this).length);
+              for(let i=0, max=$(this).length; i<max; i++){
+                //console.log($(this)[i].src)
+                let _detected = ( $(this)[i].src == _getNextItemSrc( _getCurrentDisplayedItemSrc().src ).src );
+                
+                if( _detected == true ){
+                  console.log('TRUE');
+                  $('#' + _getNextItemSrc( _getCurrentDisplayedItemSrc().src ).id).css({ 'display': 'inline' })
+                }else{
+                  //console.log('FALSE');
+                  if(switchOff==true){
+                    $(_getCurrentDisplayedItemSrc().id).css({ 'display': 'none' });
+                  }
+                }
+              }
+              
+            });
+            
+          };
+          _display(false);
+          _display(true);
+        });
+      })

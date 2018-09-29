@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    meta(name='theme-color' content='#374c6b')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(charset='UTF-8')
+    title= title
+    //- PRELOADER
+    link(rel='stylesheet' href='../javascripts/preloader/preloader-v1.css')
+    style.
+      html { height: 100%; }
+      body {
+        display: none;
+        margin: 0; /* Убираем отступы */
+        height: 100%; /* Высота страницы */
+        background: url(images/1-24_208-26-20.jpg) 100% 100% no-repeat; /* Параметры фона */
+        background-size: cover; /* cover - Фон занимает всю доступную площадь */
+      }
+    
+  body
+    //- (onload='hideLoader(showPage, 3000)')
+    div(class='loader')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/preloader/preloader.js')
+    script.
+      function showPage() {
+        $('.loader').css('display', 'none');
+        $('body').css('display', 'block');
+      }
+      hideLoader(showPage, 2000);
