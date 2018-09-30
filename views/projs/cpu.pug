@@ -6,10 +6,12 @@ append head
 
 block content
   .ui-content.jqm-content
-    //-canvas#speed(style="border: none; width: 100%; height: 200px;")
     h1: a(href='https://www.npmjs.com/package/systeminformation' target='_blank') systeminformation
-    p Timers should be activated by socket.io.
-    p See console...
+    h2
+      span#freeMem ...
+    #memTable ...
+    h2: a(href='http://www.chartjs.org/docs/latest/' target='_blank') Chart.js
+    canvas#speed(style="border: none; width: 100%; height: 500px;")
   //-script.
     // os module
     const socket = new io.connect('selection4test.ru:80');
@@ -45,16 +47,45 @@ block content
     const socket = new io.connect('selection4test.ru:80');
 
     socket.on('systeminformation-cpu', function(cpuData){
-      specialLog('cpu ()' , null, [cpuData])
-
-      // let ctx = document.getElementById("speed").getContext("2d");
-
+      specialLog('cpu ()' , null, [cpuData]);
     });
     socket.on('systeminformation-networkStats', (d) => specialLog('networkStats ()' , null, [d]));
     socket.on('systeminformation-dockerContainerStats', (d) => specialLog('dockerContainerStats ()' , null, [d]));
+    socket.on('systeminformation-mem', (d) => {
+      specialLog('mem ()' , null, [d]);
+      document.getElementById('freeMem').innerHTML = `<strong>Free mem= ${d.free*0.000001} Mb</strong> `;
+      document.getElementById('memTable').innerHTML = `<table style='overflow-x: auto;'>
+        <thead>
+          <tr>
+            ${Object.keys(d).map(e => `<th style='padding: 0 8px 0 8px; font-size: 14px;'>${e}</th>`).join('')}
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            ${Object.values(d).map(e => `<td style='padding: 0 8px 0 8px; font-size: 14px;'>${(e*0.000001).toFixed(2)} Mb</td>`).join('')}
+          </tr>
+        </tbody>
+      </table>`;
+    });
     socket.on('systeminformation-processes', (d) => {
       specialLog('processes ()' , null, [d]);
       // d.list.map((e, i) => console.log(`list[${i}]mem_vsz= ${e.mem_vsz}`));
       // console.log(`Total mem_vsz= ${d.list.map((e) => e.mem_vsz).reduce(reducer)/1073741824} Gb`);
+      
+      let ctx = document.getElementById("speed").getContext("2d");
+      let myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: d.list.map((e) => e.name),
+          datasets: [{
+            label: 'mem_rss',
+            data: d.list.map((e) => e.mem_rss),
+          }],
+        },
+        options: {
+          responsive: true,
+        },
+      });
     });
     socket.on('systeminformation-currentLoad', (d) => specialLog('currentLoad ()' , null, [d]));

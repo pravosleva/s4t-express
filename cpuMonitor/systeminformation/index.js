@@ -1,9 +1,11 @@
 const si = require('systeminformation');
 
+
 const MakeTimer = (ms = 3000) => {
   return () => {
     let socketTimer;
     const startTimer = (cb) => {
+
       // console.log("Timer started!");
       socketTimer = setTimeout(function () {
         // console.log("Timer done and will be restarted.");
@@ -16,11 +18,12 @@ const MakeTimer = (ms = 3000) => {
   };
 };
 
-const timer1 = MakeTimer(10000)();
+const timer1 = MakeTimer(5000)();
 // const timer2 = MakeTimer()();
 // const timer3 = MakeTimer()();
-const timer4 = MakeTimer(15000)();
-const timer5 = MakeTimer(7000)();
+const timer4 = MakeTimer(5000)();
+const timer5 = MakeTimer(5000)();
+const timer6 = MakeTimer(5000)();
 
 module.exports = function(io){
 
@@ -30,6 +33,7 @@ module.exports = function(io){
     // timer3.startTimer(() => si.dockerContainerStats().then(d => io.emit('systeminformation-dockerContainerStats', d)));
     timer4.startTimer(() => si.processes().then(d => io.emit('systeminformation-processes', d)));
     timer5.startTimer(() => si.currentLoad().then(d => io.emit('systeminformation-currentLoad', d)));
+    timer6.startTimer(() => si.mem().then(d => io.emit('systeminformation-mem', d)));
 
     // EXAMPLE
     // socket.on('wsp', function(data){
@@ -46,6 +50,7 @@ module.exports = function(io){
        // timer3.stopTimer();
        timer4.stopTimer();
        timer5.stopTimer();
+       timer6.stopTimer();
      });
   });
 };
