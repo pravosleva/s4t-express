@@ -30,7 +30,8 @@ var io = require('socket.io')(server);
 // var fgLogic = require('../the-fool-game-logic-socket.io');
 // fgLogic(io);
 
-const cpuMonitor = require('../cpuMonitor');
+// const cpuMonitor = require('../cpuMonitor/os');
+const cpuMonitor = require('../cpuMonitor/systeminformation');
 cpuMonitor(io);
 
 /**

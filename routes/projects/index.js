@@ -217,6 +217,13 @@ router.get('/react-maps-lab', function(req, res, next) {
   );
 });
 
+router.get('/cpu', function(req, res, next) {
+  res.render(
+    'projs/cpu',
+    { title: 'CPU' }
+  );
+});
+
 router.get('/*', function(req, res, next) {
   res.render(
     'sorry',

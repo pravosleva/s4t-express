@@ -2,14 +2,37 @@ extends ../layouts/jqm-layout
 
 append head
   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js')
 
 block content
-  //- canvas#canvas(width="50" height="100" style="border: solid 1px black;")
-  script.
-    // const canvas = document.getElementById('canvas'),
-    // ctx = canvas.getContext("2d");
+  canvas#speed(style="border: none; width: 100%; height: 200px;")
+  //-script.
+    // os module
+    const socket = new io.connect('selection4test.ru:80');
+    socket.on('os-cpus', function(cpuData){
+      console.log(cpuData);
 
-    const socket = new io.connect('localhost:3001');
-    socket.on('cpus', function(data){
-      console.log(data);
+      let ctx = document.getElementById("speed").getContext("2d");
+      let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cpuData.map((e) => e.model),
+          datasets: cpuData.map((e) => ({
+            label: `speed, MHz`,
+            data: [e.speed],
+          })),
+        },
+      });
+    });
+  script.
+    // systeminformation module
+    const socket = new io.connect('selection4test.ru:80');
+    socket.on('systeminformation-cpu', function(cpuData){
+      console.log(cpuData);
+
+      // let ctx = document.getElementById("speed").getContext("2d");
+
+    });
+    socket.on('systeminformation-networkStats', (d) => {
+      console.log(d);
     });
