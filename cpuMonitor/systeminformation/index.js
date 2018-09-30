@@ -1,29 +1,37 @@
 const si = require('systeminformation');
 
+const MakeTimer = (ms = 3000) => {
+  return () => {
+    let socketTimer;
+    const startTimer = (cb) => {
+      // console.log("Timer started!");
+      socketTimer = setTimeout(function () {
+        // console.log("Timer done and will be restarted.");
+        if (cb) { cb() }
+        startTimer(cb);
+      }, ms);
+    };
+    const stopTimer = () => clearTimeout(socketTimer);
+    return { startTimer, stopTimer };
+  };
+};
 
-let socketTimer;
-const startTimer = () => {
-  console.log("Timer statrted!");
-  socketTimer = setTimeout(function () {
-    console.log("Timer done!");
-  }, 2000);
-};
-const stopTimer = () => {
-  clearTimeout(socketTimer);
-};
+const timer1 = MakeTimer(10000)();
+// const timer2 = MakeTimer()();
+// const timer3 = MakeTimer()();
+const timer4 = MakeTimer(15000)();
+const timer5 = MakeTimer(7000)();
 
 module.exports = function(io){
 
   io.on('connection', function (socket) {
-    // console.log(os.cpus());
-    // si.cpu().then((d) => {
-    //   io.emit('systeminformation-cpu', d);
-    // });
-    // si.networkStats().then(d => {
-    //   io.emit('systeminformation-networkStats', d);
-    // });
-    startTimer(); //"Timer started!", "user disconnected", (after 15s) "Timer done!"
+    timer1.startTimer(() => si.cpu().then(d => io.emit('systeminformation-cpu', d)));
+    // timer2.startTimer(() => si.networkStats().then(d => io.emit('systeminformation-networkStats', d)));
+    // timer3.startTimer(() => si.dockerContainerStats().then(d => io.emit('systeminformation-dockerContainerStats', d)));
+    timer4.startTimer(() => si.processes().then(d => io.emit('systeminformation-processes', d)));
+    timer5.startTimer(() => si.currentLoad().then(d => io.emit('systeminformation-currentLoad', d)));
 
+    // EXAMPLE
     // socket.on('wsp', function(data){
     //   si.cpu()
     //     .then((d) => {
@@ -32,8 +40,12 @@ module.exports = function(io){
     // });
 
     socket.on("disconnect" ,function(){
-       console.log("user disconnected");
-       stopTimer();
+       console.log("User disconnected");
+       timer1.stopTimer();
+       // timer2.stopTimer();
+       // timer3.stopTimer();
+       timer4.stopTimer();
+       timer5.stopTimer();
      });
   });
 };
