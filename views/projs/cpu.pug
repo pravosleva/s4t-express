@@ -25,6 +25,8 @@ block content
       });
     });
   script.
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
     // systeminformation module
     const socket = new io.connect('localhost:3001');
     socket.on('systeminformation-cpu', function(cpuData){
@@ -33,6 +35,11 @@ block content
       // let ctx = document.getElementById("speed").getContext("2d");
 
     });
-    socket.on('systeminformation-networkStats', (d) => {
+    socket.on('systeminformation-networkStats', (d) => console.log(d));
+    socket.on('systeminformation-dockerContainerStats', (d) => console.log(d));
+    socket.on('systeminformation-processes', (d) => {
       console.log(d);
+      // d.list.map((e, i) => console.log(`list[${i}]mem_vsz= ${e.mem_vsz}`));
+      // console.log(`Total mem_vsz= ${d.list.map((e) => e.mem_vsz).reduce(reducer)/1073741824} Gb`);
     });
+    socket.on('systeminformation-currentLoad', (d) => console.log(d));
