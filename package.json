@@ -17,6 +17,7 @@
     "express-socket.io": "^1.0.3",
     "express.io": "^1.1.13",
     "morgan": "~1.8.1",
+    "nodemailer": "^4.6.8",
     "os": "^0.1.1",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2",

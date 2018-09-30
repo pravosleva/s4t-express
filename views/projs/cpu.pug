@@ -26,7 +26,7 @@ block content
     });
   script.
     // systeminformation module
-    const socket = new io.connect('selection4test.ru:80');
+    const socket = new io.connect('localhost:3001');
     socket.on('systeminformation-cpu', function(cpuData){
       console.log(cpuData);
 
