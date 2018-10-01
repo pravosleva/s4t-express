@@ -32,7 +32,7 @@ block content
   .ui-content.jqm-content
     h1: a(href='https://www.npmjs.com/package/systeminformation' target='_blank') systeminformation
     h2: span#freeMem
-    #memTable
+    #memTable(style='overflow-x: auto;')
     //- h2: a(href='https://d3js.org/' target='_blank') D3
     #d3Place(style='text-align: center; text-shadow: none !important;')
   script.
@@ -101,7 +101,7 @@ block content
 
       // margin and radius
       const margin = { top: 20, bottom: 20, right: 20, left: 20 },
-        width = 500 - margin.right - margin.left,
+        width = 600 - margin.right - margin.left,
         height = 600 - margin.top - margin.bottom,
         radius = width/2;
 
