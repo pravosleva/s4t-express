@@ -7,7 +7,8 @@ let express = require('express'),
 
 let index = require('./routes/index'),
   oldSite = require('./routes/oldSite'),
-  projects = require('./routes/projects');
+  projects = require('./routes/projects'),
+  osnotek = require('./routes/osnotek');
 
 let app = express();
 
@@ -35,6 +36,7 @@ app.use('/projects/the-fool-game', function(req, res, next){
 });
 */
 app.use('/projects', projects);
+app.use('/osnotek', osnotek);
 app.get('/calculate', function(req, res){
   /*
     http://selection4test.ru/calculate?brand=a&model=b&length=1000&width=1000&height=1000&weight=100

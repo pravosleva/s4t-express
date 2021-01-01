@@ -9,7 +9,7 @@ var router = express.Router();
 router.get('/auxiliary-calc', function(req, res, next) {
   res.render(
     'projs/auxiliary-calc',
-    { title: 'Aux Calc' }
+    { title: 'Auxiliary HVAC tool | Liquid' }
   );
 });
 

@@ -108,20 +108,20 @@ block content
       // arc generator
       let arc = d3.arc()
         .outerRadius(radius - 10)
-        .innerRadius(0);
+        .innerRadius(100);
       let labelArc = d3.arc()
         .outerRadius(radius - 50)
         .innerRadius(radius - 50);
         
       // Helper function for animation of pie chart and donut chart
       function tweenPie(b) {
-        b.innerRadius = 0;
+        b.innerRadius = 100;
         var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
         return function(t) { return arc(i(t)); };
       }
 
       function tweenDonut(b) {
-        b.innerRadius = 0;
+        b.innerRadius = 100;
         var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
         return function(t) { return arc2(i(t)); };
       }

@@ -14,6 +14,11 @@ var http = require('http');
 
 let port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 /**
  * Create HTTP server.
@@ -100,17 +105,17 @@ let emailSimpleTest = function(res){
 	// send mail with defined transport object
 	transporter.sendMail(mailOptions, (error, info) => {
 		if (error) {
-			//console.log(`ERROR: ${error.response}`);
-			serverSettings.sendResp(res, `ERROR: ${JSON.stringify(error)}`);
+			// console.log(`ERROR: ${error.response}`);
+			// serverSettings.sendResp(res, `ERROR: ${JSON.stringify(error)}`);
 		} else {
-			//console.log('Message %s sent: %s', info.messageId, info.response);
-			serverSettings.sendResp(res, `OK: ${info.response}`);
+			// console.log('Message %s sent: %s', info.messageId, info.response);
+			// serverSettings.sendResp(res, `OK: ${info.response}`);
 		}
 	});
 };
 try{
 	emailSimpleTest();
-}catch(err){}
+} catch(err) {}
 
 
 /**
