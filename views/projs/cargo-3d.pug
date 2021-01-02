@@ -39,6 +39,7 @@ html
       /*.snackbar.snackbar-opened {box-shadow: 2px 2px 10px rgb(0, 0, 0);}*/
       .snackbar{font-family:Montserrat, Tahoma;}
     script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/WebGL_Three.js/libs/three.js')
+    script(type='text/javascript' src='../javascripts/cargo-tools/WebGL_Three.js/libs/controls/OrbitControls.js')
     script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/retail.js')
 
     //- PRELOADER v1
@@ -345,6 +346,10 @@ html
           camera.lookAt(scene.position);
 
           $("#WebGL-output").append(renderer.domElement);
+          
+          // See also: https://threejs.org/docs/#examples/en/controls/OrbitControls
+          // NOTE: controls.update() must be called after any manual changes to the camera's transform
+          const controls = new THREE.OrbitControls(camera, renderer.domElement)
           renderer.render(scene, camera);
 
           // test
@@ -357,32 +362,43 @@ html
             sizeH = window.innerHeight - 160;
             camera.aspect = sizeW / sizeH;
             camera.updateProjectionMatrix();
+            controls.update();
             renderer.setSize(sizeW, sizeH);
             render();
           };
+          
+          // ---
+          function animate() {
+            requestAnimationFrame(animate)
+            
+            // cube.rotation.x += 0.01;
+            // cube.rotation.y += 0.01;
+
+            controls.update()
+
+          	renderer.render(scene, camera)
+          }
+          animate()
+          // ---
 
           function render(){
             renderer.render(scene, camera);
           }
           window.addEventListener('resize', onWindowResize, false);
 
-          let delay = (ms=100) => {
-            return new Promise((res, rej)=>{
-            setTimeout(()=>res(), ms);
-            });
-          };
+          const delay = (ms=100) => new Promise((res, rej) => { setTimeout(()=>res(), ms); });
           delay()
-          .then(()=>{
-            $.snackbar({content: `ATTANTION! Total weight wasn't checked!`, style: `primary`, timeout: 5000});
-          });
+            .then(()=>{
+              $.snackbar({content: `ATTANTION! Total weight wasn't checked!`, style: `primary`, timeout: 5000});
+            });
           delay(2000)
-          .then(()=>{
-            $.snackbar({content: `Total Dims for all units [ in Blue only ] is ${_fact_inWagon.sizes.fullX} x ${_fact_inWagon.sizes.fullY} x ${_fact_inWagon.sizes.fullZ} mm`, style: `primary`, timeout: 73000});
-          });
+            .then(()=>{
+              $.snackbar({content: `Total Dims for all units [ in Blue only ] is ${_fact_inWagon.sizes.fullX} x ${_fact_inWagon.sizes.fullY} x ${_fact_inWagon.sizes.fullZ} mm`, style: `primary`, timeout: 73000});
+            });
           delay(15000)
-          .then(()=>{
-            $.snackbar({content: `Container sizes is ${wagonLength} x ${wagonWidth} x ${wagonHeight} mm. More in console`, style: `primary`, timeout: 55000});
-          });
+            .then(()=>{
+              $.snackbar({content: `Container sizes is ${wagonLength} x ${wagonWidth} x ${wagonHeight} mm. More in console`, style: `primary`, timeout: 55000});
+            });
         }catch(er){
           $.snackbar({content: `Sorry, ${er.message}`, style: `danger-slate`, timeout: 60000});
         }
