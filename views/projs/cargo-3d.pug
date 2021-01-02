@@ -181,13 +181,14 @@ html
           var offsetX = wagonLength*0.001/2.1;
           var offsetY = wagonWidth*0.001/4;
           var offsetZ_cargoOnly = 0.005; // m
-          if(sizeW < 992){offsetX=0; offsetY=0} // should be refactored
+          // if (sizeW < 992) { offsetX=0; offsetY=0 } // should be refactored
 
           let degToRad = (deg) => deg * Math.PI / 180;
 
           let scene = new THREE.Scene(),
-            camera = new THREE.PerspectiveCamera(3.5, sizeW/sizeH, 0.1, 2000),
-            renderer = new THREE.WebGLRenderer({antialias: false});
+            camera = new THREE.PerspectiveCamera(55, sizeW/sizeH, 0.1, 1000),
+            // See also: https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
+            renderer = new THREE.WebGLRenderer({ antialias: false });
           //renderer.setClearColorHex(0xEEEEEE);
           renderer.setClearColor(0xEEEEEE);
           renderer.setSize(sizeW, sizeH);
@@ -330,16 +331,30 @@ html
           }
           */
 
-          if(sizeW > 992){// 30 90 80 // 20 100 60
-            camera.position.x = 30;
-            camera.position.y = 90;
-            camera.position.z = 80;
-          }else{
-            // 45 70 50 - подойдет когда центр координат совмещен с центром дисплея
-            camera.position.x = 45;
-            camera.position.y = 70;
-            camera.position.z = 50;
+          // --- NOTE: Init Camera Position
+          function setPosition() {
+            // if (sizeW > 992) { // 30 90 80 // 20 100 60
+              camera.position.x = 5;
+              camera.position.y = 10;
+              camera.position.z = 4;
+            /* } else { // 45 70 50 - подойдет когда центр координат совмещен с центром дисплея
+              camera.position.x = 20;
+              camera.position.y = 5;
+              camera.position.z = 3;
+            } */
           }
+          setPosition()
+          
+          // ---
+          // --- NOTE: Resize listener
+          const handleWindowResize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight
+            camera.updateProjectionMatrix()
+            renderer.setSize(window.innerWidth, window.innerHeight)
+            renderer.render(scene, camera)
+          }
+          window.addEventListener('resize', handleWindowResize, false)
+          // ---
 
           camera.rotateOnAxis(new THREE.Vector3(1, 0, 0), degToRad(90));
           camera.up = new THREE.Vector3(0, 0, 1);

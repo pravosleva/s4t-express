@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www",
+    "dev": "NODE_ENV=development PORT=3002 node ./bin/www",
     "start:pm2:80": "PORT=80 pm2 start npm --name main-80 -- run start",
     "start:pm2:443": "PORT=443 pm2 start npm --name main-443 -- run start"
   },
