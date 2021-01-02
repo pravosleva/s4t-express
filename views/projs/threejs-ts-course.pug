@@ -1,0 +1,109 @@
+extends ../layouts/jqm-layout
+
+append head
+  link(href="/stylesheets/video-js@7.10.2.css" rel="stylesheet")
+  style.
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      max-width: 356px;
+      margin: 0 auto;
+    }
+    .wrapper > div:not(:last-child) {
+      margin-bottom: 2px;
+    }
+    .video-js {
+      width: 356px;
+      height: 200px;
+    }
+  
+block content
+  .wrapper
+    video(
+      id="my-video-1"
+      class="video-js"
+      controls
+      preload="auto"
+      poster="/images/ajax-loader.gif"
+      data-setup="{}"
+    )
+      source(src="/video/special.threejs-ts-course-2021/1_-threejs-and-type-script-udemy_-introduction.mp4" type="video/mp4")
+      //-source(src="MY_VIDEO.webm" type="video/webm")
+      p(class="vjs-no-js") To view this video please enable JavaScript, and consider upgrading to a web browser that
+        a(href="https://videojs.com/html5-video-support/" target="_blank").
+          supports HTML5 video
+    video(
+      id="my-video-2"
+      class="video-js"
+      controls
+      preload="auto"
+      poster="/images/ajax-loader.gif"
+      data-setup="{}"
+    )
+      source(src="/video/special.threejs-ts-course-2021/2_-threejs-and-type-script-udemy.mp4" type="video/mp4")
+      //-source(src="MY_VIDEO.webm" type="video/webm")
+      p(class="vjs-no-js") To view this video please enable JavaScript, and consider upgrading to a web browser that
+        a(href="https://videojs.com/html5-video-support/" target="_blank").
+          supports HTML5 video
+    video(
+      id="my-video-3"
+      class="video-js"
+      controls
+      preload="auto"
+      poster="/images/ajax-loader.gif"
+      data-setup="{}"
+    )
+      source(src="/video/special.threejs-ts-course-2021/3_-threejs-and-type-script-udemy.mp4" type="video/mp4")
+      p(class="vjs-no-js") To view this video please enable JavaScript, and consider upgrading to a web browser that
+        a(href="https://videojs.com/html5-video-support/" target="_blank").
+          supports HTML5 video
+    video(
+      id="my-video-4"
+      class="video-js"
+      controls
+      preload="auto"
+      poster="/images/ajax-loader.gif"
+      data-setup="{}"
+    )
+      source(src="/video/special.threejs-ts-course-2021/4_-threejs-and-type-script-udemy_-build-your-first-type-script-file.mp4" type="video/mp4")
+      p(class="vjs-no-js") To view this video please enable JavaScript, and consider upgrading to a web browser that
+        a(href="https://videojs.com/html5-video-support/" target="_blank").
+          supports HTML5 video
+    video(
+      id="my-video-5"
+      class="video-js"
+      controls
+      preload="auto"
+      poster="/images/ajax-loader.gif"
+      data-setup="{}"
+    )
+      source(src="/video/special.threejs-ts-course-2021/5_-threejs-and-type-script-udemy_-type-annotations.mp4" type="video/mp4")
+      p(class="vjs-no-js") To view this video please enable JavaScript, and consider upgrading to a web browser that
+        a(href="https://videojs.com/html5-video-support/" target="_blank").
+          supports HTML5 video
+    video(
+      id="my-video-5"
+      class="video-js"
+      controls
+      preload="auto"
+      poster="/images/ajax-loader.gif"
+      data-setup="{}"
+    )
+      source(src="/video/special.threejs-ts-course-2021/6_-threejs-and-type-script-udemy_-interfaces-and-type-declarations.mp4" type="video/mp4")
+      p(class="vjs-no-js") To view this video please enable JavaScript, and consider upgrading to a web browser that
+        a(href="https://videojs.com/html5-video-support/" target="_blank").
+          supports HTML5 video
+    video(
+      id="my-video-5"
+      class="video-js"
+      controls
+      preload="auto"
+      poster="/images/ajax-loader.gif"
+      data-setup="{}"
+    )
+      source(src="/video/special.threejs-ts-course-2021/7_-threejs-and-type-script-udemy_classes.mp4" type="video/mp4")
+      p(class="vjs-no-js") To view this video please enable JavaScript, and consider upgrading to a web browser that
+        a(href="https://videojs.com/html5-video-support/" target="_blank").
+          supports HTML5 video
+
+  script(src='https://vjs.zencdn.net/7.10.2/video.min.js')

@@ -223,6 +223,12 @@ router.get('/cpu', function(req, res, next) {
     { title: 'CPU' }
   );
 });
+router.get('/threejs-ts-course', function(req, res, next) {
+  res.render(
+    'projs/threejs-ts-course',
+    { title: 'Three.js TypeScript tutorial' }
+  );
+});
 
 router.get('/*', function(req, res, next) {
   res.render(
