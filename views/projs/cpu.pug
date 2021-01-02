@@ -2,28 +2,39 @@ extends ../layouts/jqm-layout
 
 append head
   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js')
+  script(src='https://d3js.org/d3.v4.min.js' charset='utf-8')
+  style.
+    .arc text {
+      font: 10px sans-serif;
+      text-anchor: middle;
+    }
+    .arc path {
+      stroke: #fff;
+    }
+    .arc2 text {
+      font: 10px sans-serif;
+      text-anchor: middle;
+    }
+    .arc2 path {
+      stroke: #fff;
+    }
+  script(type='text/javascript' src='../javascripts/snackbarjs/snackbar.min.js')
+  link(rel='stylesheet' href='../javascripts/snackbarjs/snackbar.min.css')
+  link(rel='stylesheet' href='../javascripts/snackbarjs/themes-css/material-custom.css')
+  style.
+    @media (min-width:768px){
+      .snackbar.snackbar-opened {
+        margin-bottom: 10px;
+      }
+    }
 
 block content
-  canvas#speed(style="border: none; width: 100%; height: 200px;")
-  //-script.
-    // os module
-    const socket = new io.connect('selection4test.ru:80');
-    socket.on('os-cpus', function(cpuData){
-      console.log(cpuData);
-
-      let ctx = document.getElementById("speed").getContext("2d");
-      let myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: cpuData.map((e) => e.model),
-          datasets: cpuData.map((e) => ({
-            label: `speed, MHz`,
-            data: [e.speed],
-          })),
-        },
-      });
-    });
+  .ui-content.jqm-content
+    h1: a(href='https://www.npmjs.com/package/systeminformation' target='_blank') systeminformation
+    h2: span#freeMem
+    #memTable(style='overflow-x: auto;')
+    //- h2: a(href='https://d3js.org/' target='_blank') D3
+    #d3Place(style='text-align: center; text-shadow: none !important;')
   script.
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const specialLog = (header, logType, args) => {
@@ -38,13 +49,122 @@ block content
     // specialLOG('look', null, ['tst']);
 
     // systeminformation module
-    const socket = new io.connect('localhost:3001');
+    const socket = new io.connect('selection4test.ru:80');
 
     socket.on('systeminformation-cpu', function(cpuData){
-      specialLog('cpu ()' , null, cpuData)
+      specialLog('cpu ()' , null, [cpuData]);
+    });
+    socket.on('systeminformation-networkStats', (d) => specialLog('networkStats ()' , null, [d]));
+    socket.on('systeminformation-dockerContainerStats', (d) => specialLog('dockerContainerStats ()' , null, [d]));
+    socket.on('systeminformation-mem', (d) => {
+      specialLog('mem ()' , null, [d]);
+      document.getElementById('freeMem').innerHTML = `<strong>Free mem= ${(d.free*0.000001).toFixed(2)} Mb</strong> `;
+      document.getElementById('memTable').innerHTML = `<table style='overflow-x: auto;'>
+        <thead>
+          <tr>
+            ${Object.keys(d).map(e => `<th style='padding: 0 8px 0 8px; font-size: 14px;'>${e}</th>`).join('')}
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            ${Object.values(d).map(e => `<td style='padding: 0 8px 0 8px; font-size: 14px;'>${(e*0.000001).toFixed(2)} Mb</td>`).join('')}
+          </tr>
+        </tbody>
+      </table>`;
+    });
+    socket.on('systeminformation-processes', (dt) => {
+      specialLog('processes ()' , null, [dt]);
+      const fieldsToDataItem = [
+        { from: 'name', to: 'label' },
+        { from: 'mem_rss', to: 'mem_rss' },
+        { from: 'mem_vsz', to: 'mem_vsz' },
+        { from: 'command', to: 'command' },
+        { from: 'user', to: 'user' },
+        { from: 'pid', to: 'pid' },
+      ];
+      
+      data = dt.list.map(e => {
+        const obj = {};
+        fieldsToDataItem.map((o) => obj[o.to] = e[o.from]);
 
-      // let ctx = document.getElementById("speed").getContext("2d");
+        return obj;
+      });
+      // console.log(data);
+      // https://www.youtube.com/watch?v=kK5kKA-0PUQ
+      
+      d3.select('#d3Place').selectAll('svg').remove();
+      
+      // color range
+      let color = d3.scaleOrdinal()
+        .range(["#BBDEFB", "#90CAF9", "#64B5F6", "#42A5F5", "#2196F3", "#1E88E5", "#1976D2"]);
 
+      // margin and radius
+      const margin = { top: 20, bottom: 20, right: 20, left: 20 },
+        width = 600 - margin.right - margin.left,
+        height = 600 - margin.top - margin.bottom,
+        radius = width/2;
+
+      // arc generator
+      let arc = d3.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(100);
+      let labelArc = d3.arc()
+        .outerRadius(radius - 50)
+        .innerRadius(radius - 50);
+        
+      // Helper function for animation of pie chart and donut chart
+      function tweenPie(b) {
+        b.innerRadius = 100;
+        var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
+        return function(t) { return arc(i(t)); };
+      }
+
+      function tweenDonut(b) {
+        b.innerRadius = 100;
+        var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
+        return function(t) { return arc2(i(t)); };
+      }
+
+      // pie
+      let pie = d3.pie()
+        .sort(null)
+        .value((d) => d.mem_vsz);
+
+      // define svg
+      let svg = d3.select('#d3Place').append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append('g')
+        .attr('transform', `translate(${Number(width/2)}, ${Number(height/2)})`);
+
+      // append g elems (arc)
+      let g = svg.selectAll(".arc")
+        .data(pie(data))
+        .enter().append("g")
+        .attr("class", "arc")
+        .on("click", (d) => {
+          console.log(d.data);
+          $.snackbar({ content: `<strong>${d.data.pid}</strong> COMMAND: ${d.data.command}<br />MEM_RSS: ${d.data.mem_rss/1024}<br />MEM_VSZ: ${d.data.mem_vsz/1024}<br />USER: ${d.data.user}`, style: 'primary', timeout: 240000, htmlAllowed: true });
+        });
+        
+      // append the path of the arc
+      g.append('path')
+        .attr("d", arc)
+        .style("fill", function(d) { return color(d.data.label); })
+        .transition()
+        .ease(d3.easeLinear)
+        .duration(500)
+        .attrTween("d", tweenPie);
+      
+      // append the text (labels)
+      g.append('text')
+        .transition()
+        .ease(d3.easeLinear)
+        .duration(500)
+        .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+        .attr("dy", ".35em")
+        .text(function(d) { return d.data.label; });
     });
     socket.on('systeminformation-networkStats', (d) => specialLog('networkStats ()' , null, d));
     socket.on('systeminformation-dockerContainerStats', (d) => specialLog('dockerContainerStats ()' , null, d));

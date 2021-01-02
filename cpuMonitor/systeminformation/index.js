@@ -1,5 +1,6 @@
 const si = require('systeminformation');
 
+
 const MakeTimer = (ms = 3000) => {
   return () => {
     let socketTimer;
@@ -16,20 +17,22 @@ const MakeTimer = (ms = 3000) => {
   };
 };
 
-const timer1 = MakeTimer(10000)();
+const timer1 = MakeTimer(2000)();
 // const timer2 = MakeTimer()();
 // const timer3 = MakeTimer()();
-const timer4 = MakeTimer(15000)();
-const timer5 = MakeTimer(7000)();
+const timer4 = MakeTimer(10000)();
+const timer5 = MakeTimer(2000)();
+const timer6 = MakeTimer(2000)();
 
 module.exports = function(io){
 
   io.on('connection', function (socket) {
-    timer1.startTimer(() => si.cpu().then(d => io.emit('systeminformation-cpu', d)));
+    timer1.startTimer(() => si.cpu().then(d => socket.emit('systeminformation-cpu', d)));
     // timer2.startTimer(() => si.networkStats().then(d => io.emit('systeminformation-networkStats', d)));
     // timer3.startTimer(() => si.dockerContainerStats().then(d => io.emit('systeminformation-dockerContainerStats', d)));
-    timer4.startTimer(() => si.processes().then(d => io.emit('systeminformation-processes', d)));
-    timer5.startTimer(() => si.currentLoad().then(d => io.emit('systeminformation-currentLoad', d)));
+    timer4.startTimer(() => si.processes().then(d => socket.emit('systeminformation-processes', d)));
+    timer5.startTimer(() => si.currentLoad().then(d => socket.emit('systeminformation-currentLoad', d)));
+    timer6.startTimer(() => si.mem().then(d => socket.emit('systeminformation-mem', d)));
 
     // EXAMPLE
     // socket.on('wsp', function(data){

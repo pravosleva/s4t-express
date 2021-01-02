@@ -9,6 +9,20 @@ append head
     body {
       /* animation: fadeIn 1s ease-in; */
     }
+    @keyframes change-background {
+      0% { background-color: rgb(68, 138, 255); }
+      50% { background-color: #EC6150; }
+      100% { background-color: rgb(68, 138, 255); }
+    }
+    .bg-pulsed::after {
+        /* background-color: rgba(255, 255, 255, 0.85); */
+        /* background: linear-gradient(#1B7BFF, rgb(68, 138, 255)); */
+        /*  */
+        /* background: linear-gradient(#1B7BFF, transparent); */
+      background-color: rgb(68, 138, 255);
+      color: white;
+      animation: change-background 5s cubic-bezier(.48,-0.28,.41,1.4) infinite;
+    }
   script(src='./javascripts/jquery-fullscreen-plugin/jquery.fullscreen-min.js')
 
 block content
@@ -17,8 +31,8 @@ block content
     div(data-role='header' data-position='fixed')
       h1= title
       a(href='#loginForm' data-icon='lock' data-iconpos='notext').ui-state-disabled Login
-      a(href='#' style='border-radius:25px;border:1px solid lightgray;').ui-btn.ui-btn-a#fullScreen FullScreen
-      //-a(href='#' data-icon='arrow-u-r' data-iconpos='notext' id='fullScreen') FullScreen
+      //- a(href='#' style='border-radius:25px;border:1px solid lightgray;').ui-btn.ui-btn-a#fullScreen FullScreen
+      //- a(href='#' data-icon='arrow-u-r' data-iconpos='notext' id='fullScreen') FullScreen
       //- a(href='#navPanel' data-icon='bars' data-iconpos='notext') Menu
       //- a(href='skype:pravosleva?chat').ui-shadow.ui-btn.ui-corner-all.ui-icon-skype.ui-btn-icon-notext.ui-btn-inline
       //- a(href='#pageFor3DExample' role='button' class='ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-star ui-btn-icon-left' data-transition='turn') Internal page test
@@ -33,15 +47,16 @@ block content
 
       div(class='ui-grid-b ui-responsive')
         div(class='ui-block-a')
-          a(href='#about' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-info ui-btn-icon-left') About this Full Stack
+          a(href='#about' role='button' class='ui-shadow ui-btn ui-corner-all') CPU monitor
+          //- ui-icon-info ui-btn-icon-left
           //- ui-btn-inline
         div(class='ui-block-b ui-responsive')
-          a(href='#cargoInputParameters' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-left') Cargo settings
+          a(href='#cargoInputParameters' role='button' class='ui-shadow ui-btn ui-corner-all ui-btn-b') Мини-проект Груз 2016
         div(class='ui-block-c')
-          a(id='linkForCargoTest' target='cargoTestPlace' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-left' href='/projects/cargo-3d?wagonLength=13600&wagonWidth=2400&wagonHeight=3000&wagonCarryingCapacity=20000&cargoLength=1000&cargoWidth=1000&cargoHeight=1000&cargoWeight=1800&addSize=50&maxInWagon=13&maxRowsInWagon_byWagonWidth=2&maxRowsInWagon_byWagonLength=50&maxFloorsInWagon=1&cargoType=thermocold_chillers&modelName=test&containerType=truck_v1') Three.js test
+          a(id='linkForCargoTest' target='cargoTestPlace' role='button' class='ui-shadow ui-btn ui-corner-all' href='/projects/cargo-3d?wagonLength=13600&wagonWidth=2400&wagonHeight=3000&wagonCarryingCapacity=20000&cargoLength=1000&cargoWidth=1000&cargoHeight=1000&cargoWeight=1800&addSize=50&maxInWagon=13&maxRowsInWagon_byWagonWidth=2&maxRowsInWagon_byWagonLength=50&maxFloorsInWagon=1&cargoType=thermocold_chillers&modelName=test&containerType=truck_v1') Three.js test
           //- ui-state-disabled
 
-      #disqus_thread(style='max-width:700px;margin:0 auto;')
+      #disqus_thread(style='max-width:700px;margin: 50px auto 0 auto;')
       script.
         /**
           *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -60,9 +75,10 @@ block content
         })();
       noscript Please enable JavaScript to view the
         a(href="https://disqus.com/?ref_noscript") comments powered by Disqus.
-      div(style='border: none; padding: 15px; display: flex; justify-content: center; align-items: center;')
+      div(style='border: none; padding: 50px; display: flex; justify-content: center; align-items: center;')
         hr(style='width: 100%; margin: 0 50px 0 0; border: 0; height: 2px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));')
-        img(src='https://avatars0.githubusercontent.com/u/19761493?s=460&v=4' style='object-fit: contain; filter: grayscale(1);width: 50px; heigth: 50px; border-radius: 50%;')
+        a(href='https://github.com/pravosleva' target='_blank')
+          img(src='https://avatars0.githubusercontent.com/u/19761493?s=460&v=4' style='object-fit: contain; filter: grayscale(1);width: 100px; heigth: 100px; border-radius: 50%;')
         hr(style='width: 100%; margin: 0 0 0 50px; border: 0; height: 2px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));')
 
       //-p
@@ -71,7 +87,7 @@ block content
         span is used in this Front-end.
         br
         span The internal page could be got by link to&nbsp;
-          a(href='#examples') examples
+          a(href='#projects') projects
           span .
           //-data-transition='turn'
 
@@ -86,11 +102,12 @@ block content
         div(class='ui-block-a')
           a(href='https://facebook.com/pravosleva/' target='_blank' class='ui-shadow ui-btn ui-corner-all ui-icon-facebook ui-btn-icon-notext ui-btn-inline ui-state-disabled')
           //- ui-state-disabled
-        div(class='ui-block-b')
-          a(href='https://github.com/pravosleva/' target='_blank' class='ui-shadow ui-btn ui-corner-all ui-icon-github-alt ui-btn-icon-notext ui-btn-inline')
         div(class='ui-block-c')
           //-- a(href='skype:pravosleva?chat' class='ui-shadow ui-btn ui-corner-all ui-icon-skype ui-btn-icon-notext ui-btn-inline')
-          a(href='#navPanel' data-icon='bars' data-iconpos='notext').ui-shadow.ui-btn.ui-icon-bars.ui-corner-all.ui-btn-icon-notext.ui-btn-inline Menu
+          a(href='#navPanel').ui-shadow.ui-btn.ui-corner-all.ui-btn-inline.bg-pulsed.ui-btn-b Menu
+          //- data-icon='bars' data-iconpos='notext' .ui-icon-bars.ui-btn-icon-notext
+        div(class='ui-block-b')
+          a(href='https://github.com/pravosleva/' target='_blank' class='ui-shadow ui-btn ui-corner-all ui-icon-github-alt ui-btn-icon-notext ui-btn-inline')
 
     //- INTERNAL PAGE:
     //- div(data-role='page' id='pageFor3DExample')
@@ -104,14 +121,13 @@ block content
     //- PANEL 1: Right side
     div(data-role='panel' data-position='right' data-position-fixed='true' data-display='overlay' data-theme='a' id='navPanel')
       ul(data-role='listview')
-        li(data-icon='delete')
-          a(href='#' data-rel='close') Close
-        li
-          a(href='http://selection4test.ru:3003' target='_self') Blog
-        li
-          a(href='#examples') Examples
-        li
-          a(href='/projects/english-tenses' target='_self') English Tenses
+        li(data-icon='delete'): a(href='#' data-rel='close') Close
+        li: a(href='https://hh.ru/resume/5472db39ff03279a790039ed1f3472334e4653' target='_blank') Resume on HH.RU
+        //-li: a(href='http://selection4test.ru:3003' target='_self') Blog '17
+        //-li: a(href='http://80.87.194.181' target='_blank') Blog '20
+        li: a(href='http://pravosleva.ru' target='_blank') Blog '20
+        li: a(href='#projects') Projects
+        li: a(href='/projects/english-tenses' target='_self') English Tenses
 
     //- PANEL 2: Left side
     div(data-role='panel' data-position='left' data-position-fixed='true' data-display='overlay' data-theme='a' id='loginForm')
@@ -133,52 +149,54 @@ block content
         i.
           Not for usage yet...
 
-  //- DIALOG 1: Examples
-  div(data-role='dialog' data-theme='a' id='examples' data-close-btn='right')
+  //- PANEL 1: DIALOG 1: Projects
+  div(data-role='dialog' data-theme='a' id='projects' data-close-btn='right')
     div(data-role='header' data-theme='a')
-      h1 Examples
+      h1 Projects
     div(role='main' class='ui-content')
       //-p
         a(href='#home' data-rel='back' class='ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left') Back to Home
       ul(data-role='listview')
-        //-li
-          a(href='http://selection4test.ru:1350/dme' target='_self') Socket.IO + React & Polling from Back-end
-        //-li
-          a(href='http://selection4test.ru:3001' target='_self') Socket.IO example as private chat test
-
-        //-li
-          a(href='/projects/cargo-react' target='_self') Cargo as React example
-        //-li
-          a(href='http://zavodsezon.ru/sezon_podbor.html' target='_blank') VENT Eq review example '14
-        li: a(href='/projects/sezon-lines' target='_blank') VENT Eq review example '18
-        li: a(href='/projects/th-pres' target='_blank') HVAC Eq review as React / Redux example
-        //-li: a(href='/projects/total-work-time-analysis' target='_blank') Total Work Time Analysis '17
-        li: a(href='/projects/auxiliary-calc' target='_self') Auxiliary Liquid Calc '18
-        //-li: a(href='http://selection4test.ru/projects/thermocold-heva-fc-test' target='_self') Chillers Calc Test
-        //-li: a(href='http://selection4test.ru/projects/get-offer-react-gallery/' target='_self') Get Offer
-        //-li: a(href='http://selection4test.ru/projects/cargo-react/index.html') React example
-        //-li: a(href='http://selection4test.ru/projects/gpo/build/index.html') Redux example 1
-        li: a(href='http://selection4test.ru:1350/dme' target='_self') React / Socket.IO / Polling / CSS Grid
-        li: a(href='http://selection4test.ru:5000/' target='_self') Portfolio example
-        //-li: a(href='http://selection4test.ru:1337/todo.html' target='_self') Simple TODO with socket.io
-        li: a(href='http://selection4test.ru/projects/react-maps-lab' target='_self') React Maps Lab (internal routing)
-        li: a(href='http://selection4test.ru:1111' target='_self') Next.js usage (server side rendering)
+        //-li: a(href='http://80.87.194.181/article?id=5e0d15b56e78837e0721a862' target='_blank') Blog '20 / Fullstack / Nginx / PM2
+        li: a(href='http://selection4test.ru:2019' target='_blank') Parser (auto.ru / 2gis.ru) 
+          em: code [admin:admin] 
+          span '19
+        //- li: a(href='https://github.com/pravosleva/autoru-services' target='_blank') auto.ru parser '19
+        li: a(href='https://github.com/pravosleva/terminal-manager' target='_blank') Terminal manager: Electron (desktop app) '19
+        li: a(href='http://pravosleva.ru/article/uremont.com' target='_blank') uremont.com: React / Redux / SSR '19
+        li: a(href='http://selection4test.ru:1337/todo-vue.html' target='_self') Strapi@3.0.0-alpha.24.1 / MongoDB / Vue '19
+        li: a(href='http://pravosleva.ru/article/team-scoring-2019' target='_blank') Team Scoring: NextJS / Express '19
+        li: a(href='http://selection4test.ru/projects/react-maps-lab' target='_blank') React Maps Lab (internal routing): React '18
+        li: a(href='http://selection4test.ru:1350/dme/' target='_self') Open Chat: React / Socket.IO / Polling / Google maps
+        li: a(href='/projects/auxiliary-calc' target='_blank') Liquid: React / Cordova '18
+        li: a(href='/projects/th-pres' target='_blank') HVAC Eq Review: React / Redux
+        li: a(href='/projects/sezon-lines' target='_blank') VENT Eq Review: React '18
+        li: a(href='/projects/cargo-react' target='_self') Cargo: React@15 '18
+        li: a(href='https://github.com/pravosleva/callx-viewer-2017' target='_blank') CallX viewer: Express '17
+        li: a(href='http://selection4test.ru:3003' target='_self') Blog: Keystone@4 '17
+        li: a(href='/projects/total-work-time-analysis' target='_blank') Total Work Time Analysis: React '17
+        //- li: a(href='http://selection4test.ru:1350/dme' target='_self') Socket.IO + React & Polling from Back-end
+        //- li: a(href='http://selection4test.ru:3001' target='_self') Socket.IO example as private chat test
+        //- li: a(href='http://zavodsezon.ru/sezon_podbor.html' target='_blank') VENT Eq review example '14
+        //- li: a(href='http://selection4test.ru/projects/thermocold-heva-fc-test' target='_self') Chillers Calc Test
+        //- li: a(href='http://selection4test.ru/projects/get-offer-react-gallery/' target='_self') Get Offer
+        //- li: a(href='http://selection4test.ru/projects/cargo-react/index.html') React example
+        //- li: a(href='http://selection4test.ru/projects/gpo/build/index.html') Redux example 1
+        //- li: a(href='http://selection4test.ru:5000/' target='_self') Portfolio example https://github.com/pravosleva/enduro-portfolio-mirror-sample
+        //- li: a(href='http://selection4test.ru:1337/todo.html' target='_self') Simple TODO with socket.io
+        //- li: a(href='http://selection4test.ru:1111' target='_self') Next.js usage (server side rendering)
     div(data-role='footer')
-      h4 We have done some examples.
+      h4 🔥 Check it out 🔥
 
-  //- DIALOG 3: About this Full Stack
+  //- DIALOG 3: CPU monitor
   div(data-role='dialog' data-theme='a' id='about' data-close-btn='right')
     div(data-role='header' data-theme='a')
-      h1 About this Full Stack
+      h1 CPU monitor
     div(data-role='main' class='ui-content')
-      p Сочетание JS+Node+Express - идеальный выбор для команд веб-разработчиков, которым нужен мощный, быстроразвертываемый стек.
-      p Единственная проблема JS - это чувствительность к неуклюжему программированию. Экосистема Node меняет это, предоставляя библиотеки, фреймворки и утилиты, ускоряющие разработку и поощряющие написание хорошего кода.
-      p
-        b Jade was renamed to Pug.&nbsp;
-        span Pug отлично интегрируется с Express. Использование шаблонизаторов необходимо для случаев обилия шаблонного кода, т.к. сам HTML слишком перегружен деталями и трудоемкий для написания вручную.
+      p Oops, Sorry...
     div(data-role='footer')
       h4.
-        &copy; Ethan Brown
+        Secret link =)
 
   //- DIALOG 4: Cargo - input params
   div(data-role='dialog' data-theme='a' id='cargoInputParameters' data-close-btn='right')
@@ -188,7 +206,7 @@ block content
       //-p
         strong(title='Standart Container Type could be selected (Wagon === Container in main context)') Main
       div(data-role='collapsible' data-content-theme='false' data-collapsed='true' data-mini='true' data-iconpos='right' data-collapsed-icon='carat-d' data-expanded-icon='carat-u')
-        h4 Main
+        h4 Main Settings
         div(class='ui-grid-b ui-responsive')
           div(class='ui-block-a')
             label(for='cargoType') Cargo Type
@@ -320,8 +338,23 @@ block content
         div(class='ui-grid-solo ui-responsive')
           div(class='ui-block-a')
             span#outputServiceMsg
-              code Service msg will be set here...
-
+              pre Service msg will be set here...
+      div(data-role='collapsible' data-content-theme='false' data-mini='true' data-iconpos='right' data-collapsed-icon='carat-d' data-expanded-icon='carat-u')
+        h4 🔥 Что это за вещь?
+        div(class='ui-grid-solo ui-responsive')
+          div(class='ui-block-a')
+            pre(style='white-space: pre-wrap')
+              span Когда-то давно я работал с логистическими расчетами перевозок грузов из других стран. Основная цель механизма - посчитать заполненность грузовой фуры в погонных метрах при оптимальной расстановке единиц груза (вдоль или поперек контейрера). Для этого нужно указать исходные параметры, которые разделены на следующие блоки*:
+              ul
+                li(style='margin-bottom: 10px;')
+                  b Main Settings* 
+                  span - 1) Выбор либо настройка типа контейнера и грузоподъемности; 2) Выбор типа груза, настройки массы и габаритных параметров
+                li(style='margin-bottom: 10px;')
+                  b Dims limits* 
+                  span - Количество и правила распределения груза в контейнере: Расстояние между единицами, макс. кол-во единиц в контейнере, допустимое кол-во рядов по длине и ширине контейнера, допустимая этажность.
+                li(style='margin-bottom: 10px;')
+                  b Quick Retail Test 
+                  span - Возможность условного расчета рентабельности одной единицы груза с учетом официального ценника на оборудование, аксессуары и скидки от производителя. Результатом этого блока является условный коэффициент рентабельности.
       //- linkForCargoTest
       div(class='ui-grid-solo ui-responsive')
         div(class='ui-block-a')
