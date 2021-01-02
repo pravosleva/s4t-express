@@ -6,15 +6,28 @@ append head
     .wrapper {
       display: flex;
       flex-direction: column;
-      max-width: 356px;
       margin: 0 auto;
     }
     .wrapper > div:not(:last-child) {
       margin-bottom: 2px;
     }
-    .video-js {
-      width: 356px;
-      height: 200px;
+    @media(min-width: 768px) {
+      .wrapper {
+        max-width: 356px;
+      }
+      .video-js {
+        width: 356px;
+        height: 200px;
+      }
+    }
+    @media(max-width: 767px) {
+      .wrapper {
+        max-width: 270px;
+      }
+      .video-js {
+        width: 270px;
+        height: 152px;
+      }
     }
   
 block content
