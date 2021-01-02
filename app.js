@@ -4,14 +4,11 @@ let express = require('express'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
-
 let index = require('./routes/index'),
   oldSite = require('./routes/oldSite'),
   projects = require('./routes/projects'),
   osnotek = require('./routes/osnotek');
-
 let app = express();
-
 let url = require('url');
 let Cargo = require('./promventholod/calculate');
 
