@@ -67,7 +67,7 @@ html
       }
       @media (max-width: 479px) {
         .brand { width: 104px; height:23px; }
-      }
+      }      
   body
     div(id="before-load")
       div(class="multi")
@@ -296,6 +296,14 @@ html
               }
             }
           }*/
+          
+          const light = new THREE.PointLight(0xffffff, 3)
+          light.position.set(5, 5, 5)
+          const light2 = new THREE.PointLight(0xffffff, 1)
+          light2.position.set(-5, -5, -5)
+          scene.add(light)
+          scene.add(light2)
+          
           // v2) Height is firstly
           for (var j = 0; j < config.pcsX; j++){ // For each by X
             let x = j * cargoLength*0.001 + cargoLength*0.001/2 + (j+1)*addSize*0.001;
@@ -306,9 +314,17 @@ html
                 let y = i*cargoWidth*0.001 + cargoWidth*0.001/2 + (i+1)*addSize*0.001,
                   cubeMaterial;
                 ( _pcs >= _fact_inWagon.result ) ?
-                  cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff7373, wireframe: true})
+                  cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff7373, wireframe: true })
                 :
-                  cubeMaterial = new THREE.MeshBasicMaterial({color: 0x007bff, wireframe: true});
+                  cubeMaterial = new THREE.MeshPhongMaterial({
+                    color: 0x007bff,
+                    wireframe: false,
+                    specular: 0xffffff,
+                    emissive: 0x0,
+                    shininess: 30,
+                    combine: 'MultiplyOrientation',
+                    reflaction: 0.98,
+                  });
                 var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
                 cube.position.x = x - offsetX;
                 cube.position.y = y + offsetY;
