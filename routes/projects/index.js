@@ -99,6 +99,31 @@ router.get('/cargo-3d', function(req, res, next) {
     }
   );
 });
+router.get('/cargo-3d-2021', function(req, res, next) {
+  res.render(
+    'projs/cargo-3d-2021',
+    {
+      productList: req.query.productList,
+      title: 'Cargo 3D',
+      wagonLength: decodeURIComponent( Number(req.query.wagonLength) ),
+      wagonWidth: decodeURIComponent( Number(req.query.wagonWidth) ),
+      wagonHeight: decodeURIComponent( Number(req.query.wagonHeight) ),
+      wagonCarryingCapacity: decodeURIComponent( Number(req.query.wagonCarryingCapacity) ),
+      cargoLength: decodeURIComponent( Number(req.query.cargoLength) ),
+      cargoWidth: decodeURIComponent( Number(req.query.cargoWidth) ),
+      cargoHeight: decodeURIComponent( Number(req.query.cargoHeight) ),
+      cargoWeight: decodeURIComponent( Number(req.query.cargoWeight) ),
+      addSize: decodeURIComponent( Number(req.query.addSize) ),
+      maxInWagon: decodeURIComponent( Number(req.query.maxInWagon) ),
+      maxRowsInWagon_byWagonWidth: decodeURIComponent( Number(req.query.maxRowsInWagon_byWagonWidth) ),
+      maxRowsInWagon_byWagonLength: decodeURIComponent( Number(req.query.maxRowsInWagon_byWagonLength) ),
+      maxFloorsInWagon: decodeURIComponent( Number(req.query.maxFloorsInWagon) ),
+      cargoType: decodeURIComponent( String(req.query.cargoType) ),
+      containerType: decodeURIComponent( String(req.query.containerType) ),
+      modelName: decodeURIComponent( String(req.query.modelName) ),
+    }
+  );
+});
 
 router.get('/_preview-1-hello-world', function(req, res, next) {
   res.render( 'projs/_preview/_preview-1-hello-world', { title: 'Preview' } );
