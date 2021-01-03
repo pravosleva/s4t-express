@@ -186,7 +186,7 @@ html
           let degToRad = (deg) => deg * Math.PI / 180;
 
           let scene = new THREE.Scene(),
-            camera = new THREE.PerspectiveCamera(55, sizeW/sizeH, 0.1, 1000),
+            camera = new THREE.PerspectiveCamera(35, sizeW/sizeH, 0.1, 1000),
             // See also: https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
             renderer = new THREE.WebGLRenderer({ antialias: false });
           //renderer.setClearColorHex(0xEEEEEE);
@@ -352,7 +352,7 @@ html
             // if (sizeW > 992) { // 30 90 80 // 20 100 60
               camera.position.x = 5;
               camera.position.y = 10;
-              camera.position.z = 4;
+              camera.position.z = 5;
             /* } else { // 45 70 50 - подойдет когда центр координат совмещен с центром дисплея
               camera.position.x = 20;
               camera.position.y = 5;
