@@ -9,6 +9,7 @@
     "start:pm2:443": "PORT=443 pm2 start npm --name main-443 -- run start"
   },
   "dependencies": {
+    "base-64": "^1.0.0",
     "body-parser": "~1.17.1",
     "cards": "^0.1.1",
     "child_process": "^1.0.2",
@@ -27,6 +28,7 @@
     "socket.io": "^2.0.3",
     "socket.io-router": "^0.3.0",
     "systeminformation": "^3.45.6",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "utf8": "^3.0.0"
   }
 }

@@ -200,6 +200,28 @@ router.use('/getPrice', function(req, res, next){
       break;
   }
 });
+router.use('/cargo-2021/get-running-meters-in-wagon', function(req, res, next){
+  switch(req.method){
+    case 'GET':
+      var cargo2021Calc = require('./cargo-2021');
+      let calc = cargo2021Calc(req.query)
+      if (calc.success === 1) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.set('Content-Type', 'application/json');
+        res.send({ success: 1, totalX: calc.totalX });
+      } else {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.set('Content-Type', 'application/json');
+        res.send({ success: 0, message: calc.message });
+      }
+
+      // next() - not used - so req ended.
+      break;
+    default:
+      next();
+      break;
+  }
+});
 router.use('/promventholod-iframes-for-projector-z', function(req, res, next){
   switch (req.method) {
     case 'GET':
