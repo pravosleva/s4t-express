@@ -610,15 +610,15 @@ html
               $.snackbar({content: `ATTANTION! Total weight wasn't checked!`, style: `primary`, timeout: 5000});
             });
           //  delay(2000).then(()=>{
-          //    $.snackbar({content: `Total Dims for all units [ in Blue only ] is ${_fact_inWagon.sizes.fullX} x ${_fact_inWagon.sizes.fullY} x ${_fact_inWagon.sizes.fullZ} mm`, style: `primary`, timeout: 73000});
+          //    $.snackbar({content: `Total Dims for all units [ in Blue only ] is ${_fact_inWagon.sizes.fullX} x ${_fact_inWagon.sizes.fullY} x ${_fact_inWagon.sizes.fullZ} mm`, style: `default`, timeout: 73000});
           //  });
           delay(2000)
             .then(() => {
-              $.snackbar({ content: `Correct x: ${totalX.toFixed(2)} m`, style: `primary`, timeout: 73000 })
+              $.snackbar({ content: `Correct x: ${totalX.toFixed(2)} m`, style: `default`, timeout: 73000 })
             });
           delay(15000)
             .then(()=>{
-              $.snackbar({content: `Container sizes is ${wagonLength*0.001} x ${wagonWidth*0.001} x ${wagonHeight*0.001} m. More in console`, style: `primary`, timeout: 55000});
+              $.snackbar({content: `Container sizes is ${wagonLength*0.001} x ${wagonWidth*0.001} x ${wagonHeight*0.001} m. More in console`, style: `default`, timeout: 55000});
             });
         }catch(er){
           // console.log(er);
