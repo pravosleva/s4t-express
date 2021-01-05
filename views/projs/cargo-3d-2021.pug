@@ -38,7 +38,10 @@ html
 
       /*.snackbar.snackbar-opened {box-shadow: 2px 2px 10px rgb(0, 0, 0);}*/
       .snackbar{font-family:Montserrat, Tahoma;}
-    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/WebGL_Three.js/libs/three.js')
+    //-script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/WebGL_Three.js/libs/three.js')
+    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/legacy/three@0.124.0.min.js')
+    //-script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js')
+    script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/legacy/three.interaction@0.2.3.modified.js')
     script(type='text/javascript' src='../javascripts/cargo-tools/WebGL_Three.js/libs/controls/OrbitControls.js')
     script(type='text/javascript' language='JavaScript1.5' src='../javascripts/cargo-tools/retail.js')
 
@@ -108,6 +111,25 @@ html
           span &nbsp;
             i mm&nbsp;
     script.
+      // --- Interaction tools
+      const getColor = (name) => {
+        switch(name) {
+          case 'red': return { isColor: true, r: 1, g: 255 / 115, b: 255 / 115 } // ff7373
+          case 'blue': return { isColor: true, r: 0, g: 255 / 123, b: 1 } // 007bff
+          case 'green':
+          default: return { isColor: true, r: 0, g: 1, b: 0 }
+        }
+      }
+      const handleSetColor = (name) => function(ev) {
+        console.log('COLOR')
+        ev.data.target.material.color = getColor(name)
+      }
+      const handleCubeClick = function(ev) {
+        $.snackbar({ htmlAllowed: true, content: `<b>${ev.data.target.name}</b><br />${ev.data.target.comment}`, style: 'primary', timeout: 15000 });
+        // Call anything...
+      }
+      // ---
+
       function utf8_to_b64(str) {
         if (!!window) return window.btoa(unescape(encodeURIComponent(str)));
         return str;
@@ -398,35 +420,8 @@ html
           //console.log(cargoLength*0.001, cargoWidth*0.001, cargoHeight*0.001);
           //var cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});//337ab7
 
-          // v1
-          /*
-          var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-          cube.position.x = cargoLength*0.001/2 + addSize*0.001;
-          cube.position.y = cargoWidth*0.001/2 + addSize*0.001;
-          cube.position.z = cargoHeight*0.001/2;
-          scene.add(cube);
-          */
-
-          // v2
           var _pcs = 0;// количество отображаемых кубиков
-          //console.log(cargoLength, cargoWidth);
-          /* let _fact_inWagon = retail.inWagon({
-            length: cargoLength,
-            width: cargoWidth,
-            height: cargoHeight,
-            weight: cargoWeight,
-            maxInWagon: maxInWagon,
-            addSize: addSize,
-            maxRowsInWagon_byWagonWidth: maxRowsInWagon_byWagonWidth,
-            maxRowsInWagon_byWagonLength: maxRowsInWagon_byWagonLength,
-            maxFloorsInWagon: maxFloorsInWagon,
-            wagon: {
-              maxLength: wagonLength,
-              maxWidth: wagonWidth,
-              maxHeight: wagonHeight,
-              maxWeight: wagonCarryingCapacity
-            }
-          }); */
+
           const _fact_inWagon = {
             result: products.reduce((acc, { cargoConfig }) => acc + cargoConfig.result, 0),
             comment: 'In progress',
@@ -452,12 +447,14 @@ html
           scene.add(light)
           scene.add(light2)
           
+          const interaction = new Interaction(renderer, scene, camera);
+          
           // v4.
           let mayBeOffsetY = 0
           let mayBeDowngradeOffsetX = 0
           let isCorrectCube = false
           let totalX = 0
-          products.forEach(({ cargoConfig, id }, pi) => {
+          products.forEach(({ cargoConfig, id, name, comment }, pi) => {
             const { config } = cargoConfig
             // console.log(config)
             for (let j = 0; j < 1; j++){ // For each by X
@@ -469,15 +466,18 @@ html
 
                   let y = i*cargoWidth[id]*0.001 + cargoWidth[id]*0.001/2 + (i+1)*cargoAddSize[id]*0.001,
                     cubeMaterial;
+                  let defaultColor
                   if (
                     _pcs >= _fact_inWagon.result
                     || wagonWidth < (cargoWidth[id] + cargoAddSize[id])
                   ) {
-                    cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff7373, wireframe: true })
+                    defaultColor = 0xff7373
+                    cubeMaterial = new THREE.MeshBasicMaterial({ color: defaultColor, wireframe: true })
                     isCorrectCube = false;
                   } else {
+                    defaultColor = 0x007bff
                     cubeMaterial = new THREE.MeshBasicMaterial({
-                      color: 0x007bff,
+                      color: defaultColor,
                       wireframe: true,
                       /* specular: 0xffffff,
                       emissive: 0x0,
@@ -487,6 +487,7 @@ html
                     _pcs += 1;
                     isCorrectCube = true;
                   }
+                  
                   var cube = new THREE.Mesh(getCubeGeometry(cargoLength[id], cargoWidth[id], cargoHeight[id]), cubeMaterial);
                   if (
                     // (mayBeOffsetY > 0 && ((wagonWidth*0.001 - mayBeOffsetY) > cargoWidth[id]*0.001))
@@ -514,6 +515,13 @@ html
                   }
                   
                   cube.position.z = z + offsetZ_cargoOnly;
+                  cube.name = name;
+                  cube.comment = comment;
+                  cube.cursor = 'pointer';
+                  cube.on('click', handleCubeClick);
+                  // cube.on('mouseover', handleSetColor('green'));
+                  // cube.on('mouseout', handleSetColor('blue'));
+                  
                   scene.add(cube);
                 }
               }
