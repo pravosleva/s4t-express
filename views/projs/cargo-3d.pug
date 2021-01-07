@@ -381,6 +381,8 @@ html
           // See also: https://threejs.org/docs/#examples/en/controls/OrbitControls
           // NOTE: controls.update() must be called after any manual changes to the camera's transform
           const controls = new THREE.OrbitControls(camera, renderer.domElement)
+          // controls.enableDamping = true
+          // controls.dampingFactor = 0.25
           renderer.render(scene, camera);
 
           // test
