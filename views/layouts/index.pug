@@ -9,7 +9,7 @@ block content
       h1= title
       a(href='#loginForm' data-icon='lock' data-iconpos='notext') Login
       a(href='#navPanel' data-icon='bars' data-iconpos='notext') Menu
-      
+
     div(role='main' class='ui-content jqm-content jqm-fullwidth')
       //- h1 Whats'up!
       div(class='ui-grid-b ui-responsive')
@@ -19,14 +19,14 @@ block content
         div(class='ui-block-b ui-responsive')
           a(href='#cargoInputParameters' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-left') Cargo settings
         div(class='ui-block-c')
-          a(id='linkForCargoTest' target='cargoTestPlace' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-left' href='http://selection4test.ru/projects/cargo-3d?wagonLength=13600&wagonWidth=2400&wagonHeight=3000&wagonCarryingCapacity=20000&cargoLength=1000&cargoWidth=1000&cargoHeight=1000&cargoWeight=1800&addSize=50&maxInWagon=13&maxRowsInWagon_byWagonWidth=1&maxRowsInWagon_byWagonLength=50&maxFloorsInWagon=1&cargoType=thermocold_chillers&modelName=test&containerType=truck_v1') Test
+          a(id='linkForCargoTest' target='cargoTestPlace' role='button' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-left' href='https://selection4test.ru/projects/cargo-3d?wagonLength=13600&wagonWidth=2400&wagonHeight=3000&wagonCarryingCapacity=20000&cargoLength=1000&cargoWidth=1000&cargoHeight=1000&cargoWeight=1800&addSize=50&maxInWagon=13&maxRowsInWagon_byWagonWidth=1&maxRowsInWagon_byWagonLength=50&maxFloorsInWagon=1&cargoType=thermocold_chillers&modelName=test&containerType=truck_v1') Test
           //- ui-state-disabled
       div(class='ui-grid-solo ui-responsive')
         div(class='ui-block-a' style='padding: .3125em;')
           div(style='border-radius:5px; padding:0px; box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.25);')
             div(style='border-radius:5px; width: 100%; height: 450px; min-height: 450px; resize: vertical !important; overflow: auto;')
-              iframe(src='http://selection4test.ru/projects/_preview-1-hello-world' style='width:100%; height:98%; border:none;' name='cargoTestPlace' id='cargoTestPlace')
-            
+              iframe(src='https://selection4test.ru/projects/_preview-1-hello-world' style='width:100%; height:98%; border:none;' name='cargoTestPlace' id='cargoTestPlace')
+
       p
         strong.
           jQuery Mobile&nbsp;
@@ -36,13 +36,13 @@ block content
           a(href='#examples') examples
           span .
           //-data-transition='turn'
-          
+
     //-
       p
         a(href='#aboutLatestProjects' role='button' class='ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-star ui-btn-icon-left' data-transition='turn') See also About Latest Projects
       p
-        a(href='http://selection4test.ru/oldSite/index.html') Old version of this site
-      
+        a(href='https://selection4test.ru/oldSite/index.html') Old version of this site
+
     div(data-role='footer' data-position='fixed')
       div(class='ui-grid-b ui-responsive' style='text-align:center;')
         div(class='ui-block-a')
@@ -63,7 +63,7 @@ block content
           a(href='#aboutLatestProjects') About Latest Projects
         li
           a(href='https://www.scandiccontainer.fi/en/containers/category/new-containers/' target='_blank') About Container Types
-    
+
     //-- PANEL 2: Left side
     div(data-role='panel' data-position='left' data-display='overlay' data-theme='a' id='loginForm')
       form(class='userform' action='/test' method='post' data-theme='b' data-msgtext='Please, wait...' data-textonly='true' data-textvisible='true' data-inline='true')
@@ -83,7 +83,7 @@ block content
         br
         i.
           Not for usage yet...
-          
+
   //-- DIALOG 1: Examples
   div(data-role='dialog' data-theme='a' id='examples' data-close-btn='right')
     div(data-role='header' data-theme='a')
@@ -93,25 +93,25 @@ block content
         a(href='#home' data-rel='back' class='ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left') Back to Home
       ul(data-role='listview')
         li
-          a(href='http://selection4test.ru:3000' target='_self') Socket.IO example as open chat test
+          a(href='https://selection4test.ru:3000' target='_self') Socket.IO example as open chat test
         //-li
-          a(href='http://selection4test.ru:3001' target='_self') Socket.IO example as private chat test
+          a(href='https://selection4test.ru:3001' target='_self') Socket.IO example as private chat test
         li
-          a(href='http://selection4test.ru/projects/auxiliary-calc' target='_self') Liquid
+          a(href='https://selection4test.ru/projects/auxiliary-calc' target='_self') Liquid
         li
-          a(href='http://selection4test.ru/projects/cargo-react' target='_self') Cargo as React example
+          a(href='https://selection4test.ru/projects/cargo-react' target='_self') Cargo as React example
         li
-          a(href='http://selection4test.ru/projects/thermocold-heva-fc-test' target='_self') Chillers Calc Test
+          a(href='https://selection4test.ru/projects/thermocold-heva-fc-test' target='_self') Chillers Calc Test
         //-
           li
-            a(href='http://selection4test.ru/projects/cargo-react/index.html') React example
+            a(href='https://selection4test.ru/projects/cargo-react/index.html') React example
           li
-            a(href='http://selection4test.ru/projects/gpo/build/index.html') Redux example 1
+            a(href='https://selection4test.ru/projects/gpo/build/index.html') Redux example 1
           li
-            a(href='http://selection4test.ru/projects/total-work/index.html') Redux example 2
+            a(href='https://selection4test.ru/projects/total-work/index.html') Redux example 2
     div(data-role='footer')
       h4 We have done some examples.
-  
+
   //-- DIALOG 2: About Latest Projects
   div(data-role='dialog' data-theme='a' id='aboutLatestProjects' data-close-btn='right')
     div(data-role='header' data-theme='a')
@@ -121,14 +121,14 @@ block content
         a(href='#home' data-rel='back' class='ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left') Back to Home
       ul(data-role='listview')
         li
-          a(href='http://selection4test.ru/projects/get-offer-react-gallery/' target='_self') Get Offer (Under construction)
+          a(href='https://selection4test.ru/projects/get-offer-react-gallery/' target='_self') Get Offer (Under construction)
         //-
           li
-            a(href='http://selection4test.ru/projects/thermocold/_test.html') Chillers Calc Demo
+            a(href='https://selection4test.ru/projects/thermocold/_test.html') Chillers Calc Demo
     div(data-role='footer')
       h4.
         & something else is in process...
-        
+
   //-- DIALOG 3: About this Full Stack
   div(data-role='dialog' data-theme='a' id='about' data-close-btn='right')
     div(data-role='header' data-theme='a')
@@ -142,7 +142,7 @@ block content
     div(data-role='footer')
       h4.
         &copy; Ethan Brown
-  
+
   //-- DIALOG 4: Cargo - input params
   div(data-role='dialog' data-theme='a' id='cargoInputParameters' data-close-btn='right')
     div(data-role='header' data-theme='a')
@@ -173,7 +173,7 @@ block content
         div(class='ui-block-c')
           label(for='modelName') Model Name
           input(name='modelName' id='modelName' placeholder='Model Name...' value='test' type='text' data-mini='true')
-            
+
       div(class='ui-grid-b ui-responsive')
         div(class='ui-block-a' title='Lendth of the Container')
           label(for='wagonLength') Container L, mm
@@ -190,7 +190,7 @@ block content
           label(style='float:right; padding-top:10px;' title='Carrying Capacity of this Transport Container') Max weight, kg
         div(class='ui-block-c')
           input(name='wagonCarryingCapacity' id='wagonCarryingCapacity' placeholder='Carrying Capacity...' value='20000' type='text' data-mini='true')
-    
+
       div(class='ui-grid-b ui-responsive')
         div(class='ui-block-a')
           label(for='cargoLength' title='Lendth of the Cargo') Cargo L, mm
@@ -227,18 +227,18 @@ block content
         div(class='ui-block-c')
           label(for='maxFloorsInWagon' title='Limit of rows number by Container Height (Z)') Floors number, pcs
           input(name='maxFloorsInWagon' id='maxFloorsInWagon' placeholder='Floors...' value='1' type='text' data-mini='true')
-      
+
       //- linkForCargoTest
       div(class='ui-grid-solo ui-responsive')
         div(class='ui-block-a')
           button(id='confirmParams' class='ui-btn' class='ui-shadow ui-btn ui-mini ui-btn-b ui-corner-all ui-icon-check ui-btn-icon-right') Confirm
     //-div(data-role='footer')
       h4 Parameters could be set here
-  
+
   script(src='./javascripts/loginForm.js')
   script.
     $(function(){
-      
+
       $('#containerType').change(function(){
         switch(this.value){
           case 'truck_v1':
@@ -299,7 +299,7 @@ block content
         }
       });
       $('#containerType').val('truck_v1').change();
-      
+
       $('#cargoType').change(function(){
         switch(this.value){
           case ('thermocold_chillers'):
@@ -308,18 +308,18 @@ block content
             $('#maxInWagon').val(13);
             $('#maxFloorsInWagon').val(1);
             $('#modelName').val('');
-            
+
             $("#containerType").val("truck_v1").change();
-            
+
             break;
           case 'luvata_evaporators':
             $('#maxRowsInWagon_byWagonWidth').val(5);
             $('#maxInWagon').val(500);
             $('#maxFloorsInWagon').val(1);
             $('#modelName').val('');
-            
+
             $("#containerType").val("truck_v1").change();
-            
+
             break;
           case 'wxr_coolingTowers':
             console.info('Limits was not set bu developer...');
@@ -327,16 +327,16 @@ block content
             $('#maxInWagon').val(13);
             $('#maxFloorsInWagon').val(1);
             $('#modelName').val('');
-            
+
             $("#containerType").val("container_40DC").change();
-            
+
             break;
           default: console.log('Wtf?..'); break;
         }
       });
-      
+
       $('#confirmParams').click(function(){
-        let src = 'http://selection4test.ru/projects/cargo-3d?wagonLength=' + encodeURIComponent( $('#wagonLength').val() ) +
+        let src = 'https://selection4test.ru/projects/cargo-3d?wagonLength=' + encodeURIComponent( $('#wagonLength').val() ) +
           '&wagonWidth=' + encodeURIComponent( $('#wagonWidth').val() ) +
           '&wagonHeight=' + encodeURIComponent( $('#wagonHeight').val() ) +
           '&wagonCarryingCapacity='+ encodeURIComponent( $('#wagonCarryingCapacity').val() ) +
@@ -352,10 +352,10 @@ block content
           '&cargoType=' + encodeURIComponent( $('#cargoType').val() ) +
           '&containerType=' + encodeURIComponent( $('#containerType').val() ) +
           '&modelName=' + encodeURIComponent( $('#modelName').val() );
-        
+
     		$('#linkForCargoTest').attr( 'href', src );
         $('#cargoInputParameters').dialog('close');
-        
+
         // RELOAD TEST PLACE
         $('#cargoTestPlace').attr( 'src', src );
         $('#linkForCargoTest').addClass('ui-state-disabled').html('ES6 Promise for delay...');
@@ -364,7 +364,7 @@ block content
         };
         delay(3000).then(function(){ $('#linkForCargoTest').removeClass('ui-state-disabled').html('Link could be copied'); });
     	});
-      
+
       $('#linkForCargoTest').click(function(){
         //console.log(this);
         $('#linkForCargoTest').addClass('ui-state-disabled').html('ES6 Promise for delay...');
