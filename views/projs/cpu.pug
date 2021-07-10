@@ -49,7 +49,7 @@ block content
     // specialLOG('look', null, ['tst']);
 
     // systeminformation module
-    const socket = new io.connect('https://selection4test.ru:80');
+    const socket = new io.connect('https://selection4test.ru');
 
     socket.on('systeminformation-cpu', function(cpuData){
       specialLog('cpu ()' , null, [cpuData]);
