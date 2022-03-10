@@ -365,8 +365,7 @@ html
 
           var sizeW, sizeH;
           //console.log(window.innerWidth);
-          // sizeW = window.innerWidth - 15*2;
-          sizeW = window.innerWidth;
+          sizeW = window.innerWidth - 15*4;
           sizeH = window.innerHeight - 200;
 
           var offsetX = wagonLength*0.001/2.1;
@@ -560,8 +559,7 @@ html
           // Reconstruct by resizing
           function onWindowResize(){
             var sizeW, sizeH;
-            // sizeW = window.innerWidth - 15*4;
-            sizeW = window.innerWidth;
+            sizeW = window.innerWidth - 15*4;
             sizeH = window.innerHeight - 160;
             camera.aspect = sizeW / sizeH;
             camera.updateProjectionMatrix();
