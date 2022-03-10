@@ -34,7 +34,7 @@ html
       body{background-color: #84B4DB; color: white;}
       h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {color: white;}
       */
-      canvas {border-radius: 4px; position: relative;}
+      canvas {border-radius: 0px; position: relative;}
 
       /*.snackbar.snackbar-opened {box-shadow: 2px 2px 10px rgb(0, 0, 0);}*/
       .snackbar{font-family:Montserrat, Tahoma;}
@@ -365,7 +365,8 @@ html
 
           var sizeW, sizeH;
           //console.log(window.innerWidth);
-          sizeW = window.innerWidth - 15*2;
+          // sizeW = window.innerWidth - 15*2;
+          sizeW = window.innerWidth;
           sizeH = window.innerHeight - 200;
 
           var offsetX = wagonLength*0.001/2.1;
@@ -559,7 +560,8 @@ html
           // Reconstruct by resizing
           function onWindowResize(){
             var sizeW, sizeH;
-            sizeW = window.innerWidth - 15*4;
+            // sizeW = window.innerWidth - 15*4;
+            sizeW = window.innerWidth;
             sizeH = window.innerHeight - 160;
             camera.aspect = sizeW / sizeH;
             camera.updateProjectionMatrix();
