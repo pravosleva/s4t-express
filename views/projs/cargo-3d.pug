@@ -34,7 +34,10 @@ html
       body{background-color: #84B4DB; color: white;}
       h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {color: white;}
       */
-      canvas {border-radius: 0px; position: relative;}
+      canvas {
+        border-radius: 0px;
+        position: relative;
+      }
 
       /*.snackbar.snackbar-opened {box-shadow: 2px 2px 10px rgb(0, 0, 0);}*/
       .snackbar{font-family:Montserrat, Tahoma;}
@@ -80,35 +83,38 @@ html
 
         h3(class='text-shadow') Three.js test
         p
-          span Container type&nbsp;
-          span(class='containerType badge') #{containerType}
-          span(style='display:none;') &nbsp;Cargo type&nbsp;
-          span(class='cargoType badge' style='display:none;') #{cargoType}
-          span &nbsp;Model [&nbsp;
-          code(class='modelName') #{modelName}
-          span &nbsp;] Limit units number for this Container&nbsp;
-          //-- REMEMBER! Container === Wagon (in main context)
-          span(class='factInWagon badge')
-          span &nbsp;
-            i pcs
+          small
+            span Container type&nbsp;
+            span(class='containerType badge') #{containerType}
+            span(style='display:none;') &nbsp;Cargo type&nbsp;
+            span(class='cargoType badge' style='display:none;') #{cargoType}
+            span &nbsp;Model [&nbsp;
+            code(class='modelName') #{modelName}
+            span &nbsp;] Limit units number for this Container&nbsp;
+            //-- REMEMBER! Container === Wagon (in main context)
+            span(class='factInWagon badge')
+            span &nbsp;
+              i pcs
       div(class='text-center')
         div(id='WebGL-output')
         div(class='container-fluid')
-          p Dims of 1 unit&nbsp;
-            span(class='badge')
-              span(class='cargoLength')
-              span &nbsp;x&nbsp;
-              span(class='cargoWidth')
-              span &nbsp;x&nbsp;
-              span(class='cargoHeight')
-            span &nbsp;
-              i mm
-            span &nbsp;Horizontal Orientation in Container&nbsp;
-            span(class='badge horizontalOrientation')
-            span &nbsp;Add size&nbsp;
-            span(class='badge addSize')
-            span &nbsp;
-              i mm&nbsp;
+          p
+            small Dims of 1 unit&nbsp;
+            small
+              span(class='badge')
+                span(class='cargoLength')
+                span &nbsp;x&nbsp;
+                span(class='cargoWidth')
+                span &nbsp;x&nbsp;
+                span(class='cargoHeight')
+              span &nbsp;
+                i mm
+              span &nbsp;Horizontal Orientation in Container&nbsp;
+              span(class='badge horizontalOrientation')
+              span &nbsp;Add size&nbsp;
+              span(class='badge addSize')
+              span &nbsp;
+                i mm&nbsp;
     script.
       $(function(){
         //console.log(THREE);

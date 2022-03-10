@@ -30,6 +30,11 @@ html
     script(src='./javascripts/jquery.form.plugin@3.51.0-2014.06.20.js')
     style.
       .ui-mobile label, div.ui-controlgroup-label { font-size: 13px; }
+      @media(max-width: 767px) {
+          .ui-content {
+            padding: 0.4em;
+          }
+      }
   body
     block content
       
