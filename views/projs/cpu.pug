@@ -86,7 +86,7 @@ block content
       
       data = dt.list.map(e => {
         const obj = {};
-        fieldsToDataItem.map((o) => obj[o.to] = e[o.from]);
+        fieldsToDataItem.forEach((o) => obj[o.to] = e[o.from]);
 
         return obj;
       });
