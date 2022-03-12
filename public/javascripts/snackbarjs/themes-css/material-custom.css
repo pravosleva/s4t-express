@@ -1,7 +1,7 @@
 .snackbar {
   background-color: #323232;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 0.8em;
 
   height: 0;
   -moz-transition: margin 0.15s ease-in-out, -moz-transform 0.15s ease-in-out, opacity 0.15s ease-in, height 0.15s linear 0.15s, padding 0.15s linear 0.15s, height 0.15s linear 0.15s;
