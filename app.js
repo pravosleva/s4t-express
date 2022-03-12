@@ -36,7 +36,7 @@ app.use('/projects', projects);
 app.use('/osnotek', osnotek);
 app.get('/calculate', function(req, res){
   /*
-    http://selection4test.ru/calculate?brand=a&model=b&length=1000&width=1000&height=1000&weight=100
+    https://selection4test.ru/calculate?brand=a&model=b&length=1000&width=1000&height=1000&weight=100
   */
   res.header('Access-Control-Allow-Origin', '*');
   res.set({ 'Content-Type': 'json/application', 'Cache-Control': 'no-cache' });

@@ -31,7 +31,7 @@ function onCheckBoxChange (checkBox) {
     };
     checkBox.addEventListener ("change", handlerForCheckBox);
     startPollingByConditions ({
-      url: 'http://selection4test.ru:1111/jetsArray',
+      url: 'https://selection4test.ru:1111/jetsArray',
       toBeOrNotToBe: () => switched_ON,
       interval: 3000,
       callbackAsResolve,

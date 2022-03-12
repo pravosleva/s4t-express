@@ -53684,7 +53684,7 @@ var TabContent = function (_Component) {
       }).then(function () {
         __WEBPACK_IMPORTED_MODULE_7_axios___default()({
           method: 'get',
-          url: 'http://selection4test.ru/projects/getPrice'
+          url: 'https://selection4test.ru/projects/getPrice'
         }).then(function (res) {
           //console.log(res);
           updateDataFromServer({ options: res.data.options, specification: res.data.specification, received: true, priceVersion: res.data.priceVersion, loading: false, btnText: 'Details' });

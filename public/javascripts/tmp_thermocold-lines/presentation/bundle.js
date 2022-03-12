@@ -102082,7 +102082,7 @@ var Presentation = function (_React$Component) {
           { size: 6, textColor: "secondary" },
           "...something like this"
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "http://selection4test.ru/images/heva-fc-pre-v1-v5.gif",
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "https://selection4test.ru/images/heva-fc-pre-v1-v5.gif",
           style: {
             boxShadow: '0 0 12px rgba(0,0,0,.6)',
             borderRadius: '5px',
@@ -102104,7 +102104,7 @@ var Presentation = function (_React$Component) {
           { size: 6, textColor: "secondary" },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "a",
-            { href: "http://selection4test.ru/projects/thermocold-lines", target: "_blank", style: { color: '#77AEDF' } },
+            { href: "https://selection4test.ru/projects/thermocold-lines", target: "_blank", style: { color: '#77AEDF' } },
             "Here"
           )
         )

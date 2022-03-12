@@ -229,7 +229,7 @@ router.use('/promventholod-iframes-for-projector-z', function(req, res, next){
       res.set('Content-Type', 'application/json');
       //switch(req.query.q){}
       res.send([
-        { src: 'http://selection4test.ru/projects/thermocold-lines', btnText: 'HEVA FC' },
+        { src: 'https://selection4test.ru/projects/thermocold-lines', btnText: 'HEVA FC' },
       ]);
       break;
     default:
